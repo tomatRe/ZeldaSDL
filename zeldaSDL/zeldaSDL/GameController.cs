@@ -10,24 +10,15 @@ class GameController
     {
         Hardware hardware = new Hardware(1024, 720, 24, false);
         WelcomeScreen welcome = new WelcomeScreen(hardware);
+        MenuScreen menu = new MenuScreen(hardware);
         GameScreen game = new GameScreen(hardware);
+        StatsScreen stats = new StatsScreen(hardware);
         CreditsScreen credits = new CreditsScreen(hardware);
         Player p = Player.GetPlayer();
 
-        welcome.Show();
+        welcome.Run();
+        menu.Run();
         game.Run();
-        Thread.Sleep(500);
-
-        /*do
-        {
-            hardware.ClearScreen();
-            welcome.Show();
-            if (!welcome.GetExit())
-            {
-                hardware.ClearScreen();
-                game.Show();
-            }
-        } while (!welcome.GetExit());*/
 
         credits.Show();
     }

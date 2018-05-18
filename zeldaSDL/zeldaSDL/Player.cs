@@ -104,13 +104,14 @@ class Player : Sprite
         if (cooldown <= 0)
         {
             isAttacking = true;
-            //Temporally (sprites are incomming)
+            //Temporally (real sprites are incomming)
             SpriteY = sprite_height;
             SpriteX += x_offset;
             if (SpriteX >= x_offset * 12)
                 SpriteX = 0;
             isAttacking = false;
 
+            //Cooldown system so the player dont spam the attack button
             cooldown = 20;
         }
         

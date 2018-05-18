@@ -5,9 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class StatsScreen
+class StatsScreen : Screen
 {
-    public static void Run()
+
+    public StatsScreen(Hardware hardware) : base(hardware)
+    {
+
+    }
+
+    public void Run()
     {
         //To Do
     }

@@ -4,17 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class MenuScreen
+class MenuScreen : Screen
 {
     public int option { get; set; }
-    int newRun;
-    int stats;
-    int credits;
-    int quit;
+    private bool exit;
+    private int newRun;
+    private int stats;
+    private int credits;
+    private int quit;
+    Image imagen;
 
-    public static void Run()
+    public MenuScreen(Hardware hardware) : base(hardware)
     {
-        //To Do
+        imagen = new Image("sprites/MenuScreen.png", 1024, 720);
+        exit = false;
+        newRun = 0;
+        stats = 0;
+        credits = 0;
+        quit = 0;
+    }
+
+    public void Run()
+    {
+        while (!exit)
+        {
+            hardware.DrawImage(imagen);
+            hardware.UpdateScreen();
+
+            if (hardware.IsKeyPressed(Hardware.KEY_CTRL))
+                exit = true;
+        }
+
+        switch (option)
+        {
+            default:
+                break;
+        }
     }
 
 }
