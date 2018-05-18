@@ -15,8 +15,8 @@ class WelcomeScreen : Screen
 
     public WelcomeScreen(Hardware hardware) : base(hardware)
     {
-        imageW = new Image("sprites/welcomeScreen.png", 1024, 720);
-        Thread.Sleep(5);
+        imageW = new Image("sprites/welcomeScreen.png", 900, 605);
+        imageW.X = 1024 / 2 - 900;
         Console.WriteLine("Welcome Screen Created");
         exit = false;
     }

@@ -5,8 +5,6 @@ using Tao.Sdl;
 
 class Image
 {
-    private string v;
-
     public short X { get; set; }
     public short Y { get; set; }
     public short ImageWidth { get; set; }
