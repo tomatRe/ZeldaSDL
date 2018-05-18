@@ -11,8 +11,6 @@ class Hardware
     public const int KEY_RIGHT = Sdl.SDLK_RIGHT;
     public const int KEY_SPACE = Sdl.SDLK_SPACE;
 
-
-    private System.Collections.Stack inputStack;
     short screenWidth;
     short screenHeight;
     short colorDepth;
@@ -53,8 +51,6 @@ class Hardware
         Sdl.SDL_Rect target = new Sdl.SDL_Rect(img.X, img.Y,
             img.ImageWidth, img.ImageHeight);
         Sdl.SDL_BlitSurface(img.ImagePtr, ref source, screen, ref target);
-
-        Console.WriteLine("drawn image: "+ img);
     }
 
     // Draws a sprite from a sprite sheet in the specified X and Y position of the screen
@@ -64,8 +60,6 @@ class Hardware
         Sdl.SDL_Rect src = new Sdl.SDL_Rect(x, y, width, height);
         Sdl.SDL_Rect dest = new Sdl.SDL_Rect(xScreen, yScreen, width, height);
         Sdl.SDL_BlitSurface(image.ImagePtr, ref src, screen, ref dest);
-
-        Console.WriteLine("drawn sprite: " + image);
     }
 
     // Update screen

@@ -4,7 +4,6 @@ using Tao.Sdl;
 
 class GameScreen : Screen
 {
-
     Player character;
     Enemy enemy;
 
@@ -66,10 +65,16 @@ class GameScreen : Screen
             {
                 character.Movedown();
             }
+            else if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
+            {
+                character.FireMain();
+            }
 
             // 3. Move enemies and objects
 
             // 4. Check collisions and update game state
+
+            CheckCollisions();
 
             // 5. Pause game
             Thread.Sleep(10);
@@ -77,14 +82,28 @@ class GameScreen : Screen
         } while (keyPressed != Hardware.KEY_ESC);
     }
 
-    public static void MoveElements()
+    public void MoveElements()
     {
         //To Do
     }
 
-    public static void CheckCollisions()
+    public void CheckCollisions()
     {
-        //To Do
+        //To Do enviromental collisions
+
+        if (enemy.X < character.Y + 5 && enemy.Y < character.X + 5)
+        {
+            if (character.isAttacking)
+            {
+                enemy.hearts--;
+            }
+        }
+        if (character.cooldown >= 0)
+        {
+            character.cooldown--;
+            Console.WriteLine(character.cooldown);
+        }
+        
     }
 
     public static void PauseTillNextFrame(int sleeptime)

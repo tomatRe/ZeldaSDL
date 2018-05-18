@@ -9,6 +9,8 @@ class Enemy : Sprite
 {
     Random rnd = new Random();
     const int FRAMES = 10;
+    public int hearts = 3;
+    public bool isAttacking;
 
     public Enemy()
     {

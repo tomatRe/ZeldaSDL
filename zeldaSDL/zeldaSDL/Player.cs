@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
+﻿
 class Player : Sprite
 {
     private const int x_offset = 48;
     private const int sprite_height = 64;
-    int[] framesX_up = { };
-    private enum PLAYER_DIR{
-        FACING_UP,
-        FACING_DOWN,
-        FACING_LEFT,
-        FACING_RIGHT
-    }
+
+    public int hearts = 3;
+    public bool isAttacking;
+    public int cooldown = 20;
 
     private static Player player_instance;
 
@@ -40,6 +31,7 @@ class Player : Sprite
         xSpeed = 1;
         ySpeed = 1;
         direction = UP;
+        isAttacking = false;
         visible = true;
         containsSequence = true;
 
@@ -47,39 +39,51 @@ class Player : Sprite
 
     public void MoveUp()
     {
-        MoveTo(X, (short)(Y - ySpeed));
-        direction = UP;
-        SpriteY = 0;
-        SpriteX += x_offset;
-        if (SpriteX >= x_offset * 12)
-            SpriteX = 0;
-        NextFrame();
+        if (!isAttacking)
+        {
+            MoveTo(X, (short)(Y - ySpeed));
+            direction = UP;
+            SpriteY = 0;
+            SpriteX += x_offset;
+            if (SpriteX >= x_offset * 12)
+                SpriteX = 0;
+            NextFrame();
+        }
+        
     }
 
     public void Movedown()
     {
-        MoveTo(X, (short)(Y + ySpeed));
-        direction = DOWN;
+        if (!isAttacking)
+        {
+            MoveTo(X, (short)(Y + ySpeed));
+            direction = DOWN;
 
-        SpriteY = sprite_height * 2;
-        SpriteX += x_offset;
-        if (SpriteX >= x_offset * 12)
-            SpriteX = 0;
+            SpriteY = sprite_height * 2;
+            SpriteX += x_offset;
+            if (SpriteX >= x_offset * 12)
+                SpriteX = 0;
 
-        NextFrame();
+            NextFrame();
+        }
+        
     }
 
     public void MoveLeft()
     {
-        MoveTo((short)(X - xSpeed), Y);
-        direction = LEFT;
+        if (!isAttacking)
+        {
+            MoveTo((short)(X - xSpeed), Y);
+            direction = LEFT;
 
-        SpriteY = sprite_height * 3;
-        SpriteX += x_offset;
-        if (SpriteX >= x_offset * 12)
-            SpriteX = 0;
+            SpriteY = sprite_height * 3;
+            SpriteX += x_offset;
+            if (SpriteX >= x_offset * 12)
+                SpriteX = 0;
 
-        NextFrame();
+            NextFrame();
+        }
+        
     }
 
     public void MoveRight()
@@ -97,7 +101,19 @@ class Player : Sprite
 
     public void FireMain()
     {
+        if (cooldown <= 0)
+        {
+            isAttacking = true;
+            //Temporally (sprites are incomming)
+            SpriteY = sprite_height;
+            SpriteX += x_offset;
+            if (SpriteX >= x_offset * 12)
+                SpriteX = 0;
+            isAttacking = false;
 
+            cooldown = 20;
+        }
+        
     }
 
     public void FireSpecial()
