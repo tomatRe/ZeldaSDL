@@ -18,9 +18,25 @@ class GameController
 
         welcome.Run();
         menu.Run();
-        game.Run();
 
-        credits.Show();
+        switch (menu.option)
+        {
+            case 0:
+                game.Run();
+                break;
+            case 1:
+                stats.Show();
+                break;
+            case 2:
+                credits.Show();
+                break;
+
+            default:
+                break;
+        }
+        
+
+        
     }
 }
 

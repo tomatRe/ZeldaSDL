@@ -36,7 +36,6 @@ class Image
             Hardware.FatalError("Image not found: " + fileName);
     }
 
-
     public void MoveTo(short x, short y)
     {
         X = x;

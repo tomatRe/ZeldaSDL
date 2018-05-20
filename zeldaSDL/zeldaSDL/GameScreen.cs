@@ -77,7 +77,8 @@ class GameScreen : Screen
             CheckCollisions();
 
             // 5. Pause game
-            Thread.Sleep(10);
+            Thread.Sleep(5);
+
 
         } while (keyPressed != Hardware.KEY_ESC);
     }

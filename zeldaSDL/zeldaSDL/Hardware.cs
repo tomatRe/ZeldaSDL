@@ -3,6 +3,7 @@ using Tao.Sdl;
 
 class Hardware
 {
+    //--------------KEYBOARD---------------------
     public const int KEY_ESC = Sdl.SDLK_ESCAPE;
     public const int KEY_CTRL = Sdl.SDLK_LCTRL;
     public const int KEY_UP = Sdl.SDLK_UP;
@@ -10,6 +11,17 @@ class Hardware
     public const int KEY_LEFT = Sdl.SDLK_LEFT;
     public const int KEY_RIGHT = Sdl.SDLK_RIGHT;
     public const int KEY_SPACE = Sdl.SDLK_SPACE;
+    //--------------KEYBOARD---------------------
+
+    //--------------CONTROLLER-------------------
+    public const int CONT_STRT = Sdl.SDLK_ESCAPE;
+    public const int CONT_B = Sdl.SDLK_LCTRL;
+    public const int CONT_A = Sdl.SDLK_SPACE;
+    public const int CONT_UP = Sdl.SDLK_UP;
+    public const int CONT_DOWN = Sdl.SDLK_DOWN;
+    public const int CONT_LEFT = Sdl.SDLK_LEFT;
+    public const int CONT_RIGHT = Sdl.SDLK_RIGHT;
+    //--------------CONTROLLER-------------------
 
     short screenWidth;
     short screenHeight;
@@ -71,6 +83,7 @@ class Hardware
     // Detects if the user presses a key and returns the code of the key pressed
     public int KeyPressed()
     {
+        
         int pressed = -1;
 
         Sdl.SDL_PumpEvents();
@@ -85,21 +98,24 @@ class Hardware
 
         if (pressed != -1)
             Console.WriteLine("Key input: " + pressed);
-
+        
         return pressed;
     }
 
     // Checks if a given key is now being pressed
     public bool IsKeyPressed(int key)
     {
+
         bool pressed = false;
         Sdl.SDL_PumpEvents();
         Sdl.SDL_Event evt;
         Sdl.SDL_PollEvent(out evt);
         int numKeys;
         byte[] keys = Sdl.SDL_GetKeyState(out numKeys);
+
         if (keys[key] == 1)
             pressed = true;
+            
         return pressed;
     }
 

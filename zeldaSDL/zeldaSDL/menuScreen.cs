@@ -9,10 +9,6 @@ class MenuScreen : Screen
 {
     public int option { get; set; }
     private bool exit;
-    private int newRun;
-    private int stats;
-    private int credits;
-    private int quit;
     private short[] yPositionsArray = { 365, 420, 470, 550 };
     private short position = 0;
     Image imagen;
@@ -25,38 +21,27 @@ class MenuScreen : Screen
         cursor.X = 200;
         cursor.Y = 365;
         exit = false;
-        newRun = 0;
-        stats = 0;
-        credits = 0;
-        quit = 0;
     }
 
     public void Run()
     {
-        
+
+        WaitForNextFrame(25);
+
         while (!exit)
         {
-            hardware.ticks = hardware.ticks + 1;
             hardware.ClearScreen();
-            WaitForNextFrame();
+            WaitForNextFrame(40);
             hardware.DrawImage(imagen);
             hardware.DrawImage(cursor);
             hardware.UpdateScreen();
 
             CheckInput();
         }
-
-        switch (option)
-        {
-            default:
-                break;
-        }
     }
 
     public void CheckInput()
     {
-        System.Console.WriteLine("CheckInput() call");
-        System.Console.WriteLine("Ticks: " + hardware.ticks);
         if (hardware.IsKeyPressed(Hardware.KEY_ESC))
             exit = true;
         
@@ -81,12 +66,44 @@ class MenuScreen : Screen
                 position = 3;
 
             cursor.Y = yPositionsArray[position];
+            
+        }
+
+        if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
+        {
+
+            option = position;
+
+            switch (option)
+            {
+                case 0:
+                    System.Console.WriteLine("New run Selected");
+                    exit = true;
+                    break;
+                case 1:
+                    System.Console.WriteLine("Stats selected");
+                    exit = true;
+                    break;
+                case 2:
+                    System.Console.WriteLine("Credits selected");
+                    exit = true;
+                    break;
+
+                case 3:
+                    System.Console.WriteLine("Exit Selected");
+                    exit = true;
+                    break;
+
+                default:
+                    System.Console.WriteLine("Error on menu option");
+                    break;
+            }
         }
     }
 
-    public void WaitForNextFrame()
+    public void WaitForNextFrame(int delay)
     {
-        Thread.Sleep(25);
+        Thread.Sleep(delay);
     }
 
 }

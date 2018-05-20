@@ -26,7 +26,6 @@ class WelcomeScreen : Screen
 
         while (exit != true)
         {
-            hardware.ticks = hardware.ticks+1;
             hardware.DrawImage(imageW);
             hardware.UpdateScreen();
 
