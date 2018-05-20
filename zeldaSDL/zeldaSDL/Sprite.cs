@@ -34,7 +34,7 @@ class Sprite
     //------Animation variables-----------
 
     public static Image SpriteSheet = new Image
-        ("sprites/link_spriteSheet.png", 576, 512);
+        ("sprites/linkSpriteSheet.png", 576, 512);
     private int currentFrameTick;
     private int updatesPerFrame;
     public const short SPRITE_WIDTH = 46;
