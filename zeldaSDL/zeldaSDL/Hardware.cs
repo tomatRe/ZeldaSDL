@@ -14,6 +14,9 @@ class Hardware
     //--------------KEYBOARD---------------------
 
     //--------------CONTROLLER-------------------
+    static bool isThereJoystick;
+    static IntPtr joystick;
+
     public const int CONT_STRT = Sdl.SDLK_ESCAPE;
     public const int CONT_B = Sdl.SDLK_LCTRL;
     public const int CONT_A = Sdl.SDLK_SPACE;
@@ -46,14 +49,125 @@ class Hardware
         Console.WriteLine("Created hardware");
     }
 
+    //----------CONTROLLER SUPPORT-----------
+
+    // Joystick methods
+
+    /** JoystickPressed: returns TRUE if
+        *  a certain button in the joystick/gamepad
+        *  has been pressed
+        */
+    public static bool JoystickPressed(int boton)
+    {
+        if (!isThereJoystick)
+            return false;
+
+        if (Sdl.SDL_JoystickGetButton(joystick, boton) > 0)
+            return true;
+        else
+            return false;
+    }
+
+    /** JoystickMoved: returns TRUE if
+        *  the joystick/gamepad has been moved
+        *  up to the limit in any direction
+        *  Then, int returns the corresponding
+        *  X (1=right, -1=left)
+        *  and Y (1=down, -1=up)
+        */
+    public static bool JoystickMoved(out int posX, out int posY)
+    {
+        posX = 0; posY = 0;
+        if (!isThereJoystick)
+            return false;
+
+        posX = Sdl.SDL_JoystickGetAxis(joystick, 0);  // Leo valores (hasta 32768)
+        posY = Sdl.SDL_JoystickGetAxis(joystick, 1);
+        // Normalizo valores
+        if (posX == -32768) posX = -1;  // Normalizo, a -1, +1 o 0
+        else if (posX == 32767) posX = 1;
+        else posX = 0;
+        if (posY == -32768) posY = -1;
+        else if (posY == 32767) posY = 1;
+        else posY = 0;
+
+        if ((posX != 0) || (posY != 0))
+            return true;
+        else
+            return false;
+    }
+
+
+    /** JoystickMovedRight: returns TRUE if
+        *  the joystick/gamepad has been moved
+        *  completely to the right
+        */
+    public static bool JoystickMovedRight()
+    {
+        if (!isThereJoystick)
+            return false;
+
+        int posX = 0, posY = 0;
+        if (JoystickMoved(out posX, out posY) && (posX == 1))
+            return true;
+        else
+            return false;
+    }
+
+    /** JoystickMovedLeft: returns TRUE if
+        *  the joystick/gamepad has been moved
+        *  completely to the left
+        */
+    public static bool JoystickMovedLeft()
+    {
+        if (!isThereJoystick)
+            return false;
+
+        int posX = 0, posY = 0;
+        if (JoystickMoved(out posX, out posY) && (posX == -1))
+            return true;
+        else
+            return false;
+    }
+
+
+    /** JoystickMovedUp: returns TRUE if
+        *  the joystick/gamepad has been moved
+        *  completely upwards
+        */
+    public static bool JoystickMovedUp()
+    {
+        if (!isThereJoystick)
+            return false;
+
+        int posX = 0, posY = 0;
+        if (JoystickMoved(out posX, out posY) && (posY == -1))
+            return true;
+        else
+            return false;
+    }
+
+
+    /** JoystickMovedDown: returns TRUE if
+        *  the joystick/gamepad has been moved
+        *  completely downwards
+        */
+    public static bool JoystickMovedDown()
+    {
+        if (!isThereJoystick)
+            return false;
+
+        int posX = 0, posY = 0;
+        if (JoystickMoved(out posX, out posY) && (posY == 1))
+            return true;
+        else
+            return false;
+    }
+    //----------CONTROLLER SUPPORT-----------
+
     internal static void FatalError(string error)
     {
         Console.WriteLine(error);
-    }
-
-    ~Hardware()
-    {
-        Sdl.SDL_Quit();
     }
 
     public void DrawImage(Image img)
@@ -124,6 +238,11 @@ class Hardware
     {
         Sdl.SDL_Rect source = new Sdl.SDL_Rect(0, 0, screenWidth, screenHeight);
         Sdl.SDL_FillRect(screen, ref source, 0);
+    }
+
+    ~Hardware()
+    {
+        Sdl.SDL_Quit();
     }
 }
 

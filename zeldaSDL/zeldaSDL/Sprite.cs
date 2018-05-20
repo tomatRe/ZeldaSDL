@@ -37,8 +37,8 @@ class Sprite
         ("sprites/linkSpriteSheet.png", 576, 512);
     private int currentFrameTick;
     private int updatesPerFrame;
-    public const short SPRITE_WIDTH = 46;
-    public const short SPRITE_HEIGHT = 46;
+    public const short SPRITE_WIDTH = 45;
+    public const short SPRITE_HEIGHT = 60;
 
     public short X { get; set; }
     public short Y { get; set; }

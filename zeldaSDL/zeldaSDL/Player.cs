@@ -1,8 +1,8 @@
 ﻿
 class Player : Sprite
 {
-    private const int x_offset = 48;
-    private const int sprite_height = 64;
+    private const int x_offset = 50;
+    private const int sprite_height = 60;
 
     public int hearts = 3;
     public bool isAttacking;
@@ -31,6 +31,10 @@ class Player : Sprite
         xSpeed = 1;
         ySpeed = 1;
         direction = UP;
+
+        SpriteX = 0;
+        SpriteY = 300;
+
         isAttacking = false;
         visible = true;
         containsSequence = true;
@@ -42,10 +46,12 @@ class Player : Sprite
         if (!isAttacking)
         {
             MoveTo(X, (short)(Y - ySpeed));
+
+            //--animation--
             direction = UP;
-            SpriteY = 0;
+            SpriteY = 300;
             SpriteX += x_offset;
-            if (SpriteX >= x_offset * 12)
+            if (SpriteX >= 600)
                 SpriteX = 0;
             NextFrame();
         }
@@ -57,8 +63,9 @@ class Player : Sprite
         if (!isAttacking)
         {
             MoveTo(X, (short)(Y + ySpeed));
-            direction = DOWN;
 
+            //--animation--
+            direction = DOWN;
             SpriteY = sprite_height * 2;
             SpriteX += x_offset;
             if (SpriteX >= x_offset * 12)
@@ -74,8 +81,9 @@ class Player : Sprite
         if (!isAttacking)
         {
             MoveTo((short)(X - xSpeed), Y);
-            direction = LEFT;
 
+            //--animation--
+            direction = LEFT;
             SpriteY = sprite_height * 3;
             SpriteX += x_offset;
             if (SpriteX >= x_offset * 12)
@@ -89,8 +97,9 @@ class Player : Sprite
     public void MoveRight()
     {
         MoveTo((short)(X + xSpeed), Y);
-        direction = RIGHT;
 
+        //--animation--
+        direction = RIGHT;
         SpriteY = sprite_height;
         SpriteX += x_offset;
         if (SpriteX >= x_offset * 12)
@@ -119,16 +128,15 @@ class Player : Sprite
 
     public void FireSpecial()
     {
-
+        //To do
     }
 
     public void Roll()
     {
-
+        //To do
     }
 
     private void ChangeSprite()
     {
-        
     }
 }
