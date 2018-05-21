@@ -7,8 +7,6 @@ class Sprite
 {
 
     //------Movement variables-----------
-    public short x { get; set; }
-    public short y { get; set; }
     protected short startX { get; set; }
     protected short startY { get; set; }
 
@@ -33,8 +31,13 @@ class Sprite
     public short frame = 0;
     //------Animation variables-----------
 
-    public static Image SpriteSheet = new Image
+    public static Image link = new Image
         ("sprites/linkSpriteSheet.png", 576, 512);
+    public static Image ockorok = new Image
+        ("sprites/oktorok.png", 34, 71);
+    public static Image heart = new Image
+        ("sprites/heart.png",16,16);
+
     private int currentFrameTick;
     private int updatesPerFrame;
     public const short SPRITE_WIDTH = 45;

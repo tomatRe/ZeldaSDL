@@ -6,6 +6,7 @@ class GameScreen : Screen
 {
     Player character;
     Enemy enemy;
+    Heart testHeart;
 
     public GameScreen(Hardware hardware) : base(hardware)
     {
@@ -16,7 +17,8 @@ class GameScreen : Screen
         int keyPressed;
 
         character = Player.GetPlayer();
-        enemy = new Enemy();
+        enemy = new Enemy(50,600);
+        testHeart = new Heart(512,200);
 
         do
         {
@@ -25,52 +27,23 @@ class GameScreen : Screen
 
             // 1. Draw everything
             hardware.ClearScreen();
-            hardware.DrawSprite(Sprite.SpriteSheet, character.X, character.Y,
-                character.SpriteX, character.SpriteY, Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
+
+            hardware.DrawSprite(Sprite.link, character.X, character.Y,
+                character.SpriteX, character.SpriteY, 55, 60);
+
+            hardware.DrawSprite(Sprite.ockorok, enemy.X, enemy.Y,
+                enemy.SpriteX, enemy.SpriteY, 17, 17);
+
+            hardware.DrawSprite(Sprite.heart, 512, 200, 0, 0, 16, 16);
             hardware.UpdateScreen();
 
             // 2. Move character from keyboard input
-            if (hardware.IsKeyPressed(Hardware.KEY_LEFT))
-            {
-                character.MoveLeft();
 
-                if (hardware.IsKeyPressed(Hardware.KEY_UP))
-                {
-                    character.MoveUp();
-                }
-                else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
-                {
-                    character.Movedown();
-                }
-
-            }
-            else if (hardware.IsKeyPressed(Hardware.KEY_RIGHT))
-            {
-                character.MoveRight();
-
-                if (hardware.IsKeyPressed(Hardware.KEY_UP))
-                {
-                    character.MoveUp();
-                }
-                else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
-                {
-                    character.Movedown();
-                }
-            }
-            else if (hardware.IsKeyPressed(Hardware.KEY_UP))
-            {
-                character.MoveUp();
-            }
-            else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
-            {
-                character.Movedown();
-            }
-            else if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
-            {
-                character.FireMain();
-            }
+            CheckInput();
 
             // 3. Move enemies and objects
+
+            enemy.Move();
 
             // 4. Check collisions and update game state
 
@@ -83,6 +56,49 @@ class GameScreen : Screen
         } while (keyPressed != Hardware.KEY_ESC);
     }
 
+    private void CheckInput()
+    {
+        if (hardware.IsKeyPressed(Hardware.KEY_LEFT))
+        {
+            character.MoveLeft();
+
+            if (hardware.IsKeyPressed(Hardware.KEY_UP))
+            {
+                character.MoveUp();
+            }
+            else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
+            {
+                character.Movedown();
+            }
+
+        }
+        else if (hardware.IsKeyPressed(Hardware.KEY_RIGHT))
+        {
+            character.MoveRight();
+
+            if (hardware.IsKeyPressed(Hardware.KEY_UP))
+            {
+                character.MoveUp();
+            }
+            else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
+            {
+                character.Movedown();
+            }
+        }
+        else if (hardware.IsKeyPressed(Hardware.KEY_UP))
+        {
+            character.MoveUp();
+        }
+        else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
+        {
+            character.Movedown();
+        }
+        else if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
+        {
+            character.FireMain();
+        }
+    }
+
     public void MoveElements()
     {
         //To Do
@@ -92,10 +108,19 @@ class GameScreen : Screen
     {
         //To Do enviromental collisions
 
+
+        //Heart pickup
+
+        /*if (Heart.PickUp(character.X, character.Y))
+            character.hearts++;*/
+
+        //Damage collisions
+
         if (enemy.X < character.Y + 5 && enemy.Y < character.X + 5)
         {
             if (character.isAttacking)
             {
+                Console.WriteLine("Hit!");
                 enemy.hearts--;
             }
         }

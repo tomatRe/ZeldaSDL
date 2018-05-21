@@ -1,8 +1,10 @@
 ﻿
 class Player : Sprite
 {
-    private const int x_offset = 50;
+    private const int x_offset = 55;
     private const int sprite_height = 60;
+    private const int frameSpeed = 3;
+    private int frames = 0;
 
     public int hearts = 3;
     public bool isAttacking;
@@ -50,10 +52,17 @@ class Player : Sprite
             //--animation--
             direction = UP;
             SpriteY = 300;
-            SpriteX += x_offset;
-            if (SpriteX >= 600)
-                SpriteX = 0;
-            NextFrame();
+
+            if (frames % frameSpeed == 0)//Slowing animation
+            {
+                SpriteX += x_offset;
+                if (SpriteX >= 600)
+                    SpriteX = 0;
+                NextFrame();
+                frames = 0;
+            }
+                
+            frames++;
         }
         
     }
@@ -66,12 +75,19 @@ class Player : Sprite
 
             //--animation--
             direction = DOWN;
-            SpriteY = sprite_height * 2;
-            SpriteX += x_offset;
-            if (SpriteX >= x_offset * 12)
-                SpriteX = 0;
+            SpriteY = 445;
 
-            NextFrame();
+            if (frames% frameSpeed == 0)//Slowing animation
+            {
+                SpriteX += x_offset;
+                if (SpriteX >= 600)
+                    SpriteX = 0;
+
+                NextFrame();
+                frames = 0;
+            }
+                
+            frames++;
         }
         
     }
@@ -84,12 +100,19 @@ class Player : Sprite
 
             //--animation--
             direction = LEFT;
-            SpriteY = sprite_height * 3;
-            SpriteX += x_offset;
-            if (SpriteX >= x_offset * 12)
-                SpriteX = 0;
+            SpriteY = 520;
 
-            NextFrame();
+            if (frames % frameSpeed == 0)//Slowing animation
+            {
+                SpriteX += x_offset;
+                if (SpriteX >= 600)
+                    SpriteX = 0;
+
+                NextFrame();
+                frames = 0;
+            }
+                
+            frames++;
         }
         
     }
@@ -100,12 +123,19 @@ class Player : Sprite
 
         //--animation--
         direction = RIGHT;
-        SpriteY = sprite_height;
-        SpriteX += x_offset;
-        if (SpriteX >= x_offset * 12)
-            SpriteX = 0;
+        SpriteY = 375;
 
-        NextFrame();
+        if (frames % frameSpeed == 0)//Slowing animation
+        {
+            SpriteX += x_offset;
+            if (SpriteX >= 600)
+                SpriteX = 0;
+
+            NextFrame();
+            frames = 0;
+        }
+
+        frames++;
     }
 
     public void FireMain()
@@ -113,17 +143,43 @@ class Player : Sprite
         if (cooldown <= 0)
         {
             isAttacking = true;
-            //Temporally (real sprites are incomming)
-            SpriteY = sprite_height;
-            SpriteX += x_offset;
-            if (SpriteX >= x_offset * 12)
+
+            SpriteX = 10;
+
+            switch (direction)
+            {
+                case UP:
+                    SpriteY = 147;
+                    break;
+                case DOWN:
+                    SpriteY = 0;
+                    break;
+                case LEFT:
+                    SpriteY = 65;
+                    break;
+                case RIGHT:
+                    SpriteY = 200;
+                    break;
+            }
+
+            SpriteX = 0;
+
+            while (SpriteX <= 600)
+            {
+                frames++;
+                if (frames % frameSpeed == 0)
+                    SpriteX += x_offset;
+            }
+            
+            if (SpriteX >= 600)
                 SpriteX = 0;
+
             isAttacking = false;
 
             //Cooldown system so the player dont spam the attack button
             cooldown = 20;
         }
-        
+
     }
 
     public void FireSpecial()

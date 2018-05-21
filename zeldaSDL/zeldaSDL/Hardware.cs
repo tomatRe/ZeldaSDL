@@ -180,8 +180,11 @@ class Hardware
     }
 
     // Draws a sprite from a sprite sheet in the specified X and Y position of the screen
-    // The sprite to be drawn is determined by the x and y coordinates within the image, and the width and height to be cropped
-    public void DrawSprite(Image image, short xScreen, short yScreen, short x, short y, short width, short height)
+    // The sprite to be drawn is determined by the x and y 
+    //      coordinates within the image, and the width and height to be cropped
+    public void DrawSprite
+        (Image image, short xScreen, short yScreen,
+        short x, short y, short width, short height)
     {
         Sdl.SDL_Rect src = new Sdl.SDL_Rect(x, y, width, height);
         Sdl.SDL_Rect dest = new Sdl.SDL_Rect(xScreen, yScreen, width, height);
