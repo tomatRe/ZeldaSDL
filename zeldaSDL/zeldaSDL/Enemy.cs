@@ -40,19 +40,35 @@ class Enemy : Sprite
 
                     if (X <= 1024 && Y <= 720 && X >= 0 && Y >= 0)
                     {
+                        //Random movements
                         if (i % 2 == 0)
                             X += xSpeed;
                         else if (i % 3 == 0)
                             X -= xSpeed;
+                        else if (i % 5 == 0)
+                            xSpeed *= -1;
+                        else if (i == 10)
+                            if (rnd.Next(1, 2) == 2)
+                                xSpeed *= -1;
+                            else
+                                ySpeed *= -1;
                         else
-                            X += xSpeed;
+                            Y += ySpeed;
                     }
                     else
                     {
-                        if (X < 0 || X >1024)
+                        if (X < 10 || X > 1020)
+                        {
                             xSpeed *= -1;
-                        else if (Y < 0 || Y > 720)
+                            X += xSpeed;
+                        }
+                            
+                        else if (Y < 10 || Y > 7)
+                        {
                             ySpeed *= -1;
+                            Y += ySpeed;
+                        }
+                            
                     }
 
                 }
