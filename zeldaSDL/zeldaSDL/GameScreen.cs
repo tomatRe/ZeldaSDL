@@ -4,9 +4,9 @@ using Tao.Sdl;
 
 class GameScreen : Screen
 {
+    Level level;
     Player character;
     Enemy enemy;
-    Heart testHeart;
 
     public GameScreen(Hardware hardware) : base(hardware)
     {
@@ -16,43 +16,38 @@ class GameScreen : Screen
     {
         int keyPressed;
 
+        level = new Level("level1");
         character = Player.GetPlayer();
         enemy = new Enemy(50,600);
-        testHeart = new Heart(512,200);
 
         do
         {
-            pollEvents();
-            keyPressed = hardware.KeyPressed();
+            
 
             // 1. Draw everything
+
             hardware.ClearScreen();
-
-            hardware.DrawSprite(Sprite.link, character.X, character.Y,
-                character.SpriteX, character.SpriteY, 55, 60);
-
-            hardware.DrawSprite(Sprite.ockorok, enemy.X, enemy.Y,
-                enemy.SpriteX, enemy.SpriteY, 68, 63);
-
-            hardware.DrawSprite(Sprite.heart, 512, 200, 0, 0, 16, 16);
-
+            DrawLevel();
             DrawPlayerHUD();
             hardware.UpdateScreen();
 
             // 2. Move character from keyboard input
 
+            keyPressed = hardware.KeyPressed();
             CheckInput();
 
             // 3. Move enemies and objects
 
             enemy.Move();
+            MoveElements();
 
             // 4. Check collisions and update game state
 
             CheckCollisions();
+            pollEvents();
 
             // 5. Pause game
-            Thread.Sleep(5);
+            Thread.Sleep(15);
 
 
         } while (keyPressed != Hardware.KEY_ESC);
@@ -147,6 +142,45 @@ class GameScreen : Screen
             x -= 20;
         }
         x = startX;
+    }
+
+    public void DrawLevel()
+    {
+        /*hardware.DrawSprite(level.Floor,
+          0, 0, level.XMap, level.YMap, GameController.SCREEN_WIDTH,
+          GameController.SCREEN_HEIGHT);
+
+        foreach (Wall wall in level.Walls)
+            hardware.DrawSprite(Sprite.SpriteSheet,
+            (short)(wall.X - level.XMap),
+            (short)(wall.Y - level.YMap),
+            wall.SpriteX, wall.SpriteY,
+            Sprite.SPRITE_WIDTH,
+            Sprite.SPRITE_HEIGHT);
+
+        foreach (Door d in level.Doors)
+            hardware.DrawSprite(Sprite.SpriteSheet,
+            (short)(d.X - level.XMap),
+            (short)(d.Y - level.YMap),
+            d.SpriteX, d.SpriteY,
+            Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
+
+        hardware.DrawSprite(Sprite.SpriteSheet,
+            (short)(level.Key.X - level.XMap),
+            (short)(level.Key.Y - level.YMap),
+            level.Key.SpriteX, level.Key.SpriteY,
+            Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
+        */
+
+        hardware.DrawSprite(Sprite.ockorok,
+            (short)(enemy.X- level.XMap),
+            (short)(enemy.Y - level.YMap),
+            enemy.SpriteX, enemy.SpriteY, 68, 63);
+
+        hardware.DrawSprite(Sprite.link,
+            (short)(character.X - level.XMap),
+            (short)(character.Y - level.YMap),
+            character.SpriteX, character.SpriteY, 55, 60);
     }
 
     public static void PauseTillNextFrame(int sleeptime)
