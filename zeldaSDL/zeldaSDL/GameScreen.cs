@@ -35,6 +35,8 @@ class GameScreen : Screen
                 enemy.SpriteX, enemy.SpriteY, 68, 63);
 
             hardware.DrawSprite(Sprite.heart, 512, 200, 0, 0, 16, 16);
+
+            DrawPlayerHUD();
             hardware.UpdateScreen();
 
             // 2. Move character from keyboard input
@@ -130,6 +132,21 @@ class GameScreen : Screen
             Console.WriteLine(character.cooldown);
         }
         
+    }
+
+    public void DrawPlayerHUD()
+    {
+        const short startX = 1000;
+        short x = startX;
+
+        //you can have as many hearts as you can grab
+        //so the hud draws all that the players have
+        for (int i = 0; i < character.hearts; i++)
+        {
+            hardware.DrawSprite(Sprite.heart, x, 25, 0, 0, 16, 16);
+            x -= 20;
+        }
+        x = startX;
     }
 
     public static void PauseTillNextFrame(int sleeptime)
