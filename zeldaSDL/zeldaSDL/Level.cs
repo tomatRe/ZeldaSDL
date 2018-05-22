@@ -7,15 +7,24 @@ using System.Threading.Tasks;
 
 class Level : Map
 {
+    //----item variables----
     public int xKeyPosition { get; set; }
     public int yKeyPosition { get; set; }
 
     public int xDoorPosition { get; set; }
     public int yDoorPosition { get; set; }
+    //------------------------
 
-    public Level(Hardware hardware) : base(hardware)
+    //----level variables----
+    public short Width { get; set; }
+    public short Height { get; set; }
+    public short XMap { get; set; }
+    public short YMap { get; set; }
+    //------------------------
+
+    public Level(string levelname)
     {
+        XMap = 0;
+        YMap = 0;
     }
-
-    //To Do
 }

@@ -32,7 +32,7 @@ class GameScreen : Screen
                 character.SpriteX, character.SpriteY, 55, 60);
 
             hardware.DrawSprite(Sprite.ockorok, enemy.X, enemy.Y,
-                enemy.SpriteX, enemy.SpriteY, 17, 17);
+                enemy.SpriteX, enemy.SpriteY, 68, 63);
 
             hardware.DrawSprite(Sprite.heart, 512, 200, 0, 0, 16, 16);
             hardware.UpdateScreen();

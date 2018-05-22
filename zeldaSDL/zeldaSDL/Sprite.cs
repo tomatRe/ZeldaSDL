@@ -34,7 +34,7 @@ class Sprite
     public static Image link = new Image
         ("sprites/linkSpriteSheet.png", 576, 512);
     public static Image ockorok = new Image
-        ("sprites/oktorok.png", 34, 71);
+        ("sprites/oktorok.png", 136, 280);
     public static Image heart = new Image
         ("sprites/heart.png",16,16);
 

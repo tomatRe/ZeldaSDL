@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class Map : GameScreen
+class Map
 {
     Level currentLevel { get; set; }
 
-    public Map(Hardware hardware) : base(hardware)
+    public Map()
     {
     }
 

@@ -17,37 +17,37 @@ class Boss : Sprite
 
     public void MoveUp()
     {
-
+        //To do
     }
 
     public void Movedown()
     {
-
+        //To do
     }
 
     public void MoveLeft()
     {
-
+        //To do
     }
 
     public void MoveRight()
     {
-
+        //To do
     }
 
     public void FireMain()
     {
-
+        //To do
     }
 
     public void FireSpecial()
     {
-
+        //To do
     }
 
     public void Jump()
     {
-
+        //To do
     }
 
 }

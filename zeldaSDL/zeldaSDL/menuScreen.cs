@@ -28,6 +28,7 @@ class MenuScreen : Screen
 
         WaitForNextFrame(25);
 
+        //main loop
         while (!exit)
         {
             hardware.ClearScreen();
