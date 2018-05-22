@@ -38,7 +38,7 @@ class Enemy : Sprite
                 {
                     //is inside the window boundaries?
 
-                    if (X <= 1024 && Y <= 720 && X >= 0 && Y >= 0)
+                    if (X <= 1024 - SPRITE_WIDTH && Y <= 720 - SPRITE_WIDTH && X >= 0 && Y >= 0)
                     {
                         //Random movements
                         if (i % 2 == 0)
