@@ -92,6 +92,10 @@ class Level : Map
                                 AddPlayer(new PlayerSpawn((short)j,
                                     (short)i));
                                 break;
+
+                            default:
+                                DrawGrass();
+                                break;
                         }
                     }
                 }
@@ -122,5 +126,10 @@ class Level : Map
     private void AddPlayer(PlayerSpawn p)
     {
         playerSpawns.Add(p);
+    }
+
+    private void DrawGrass()
+    {
+        //to do
     }
 }

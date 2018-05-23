@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Threading;
+
 class Player : Sprite
 {
     private const int x_offset = 55;
@@ -9,6 +11,7 @@ class Player : Sprite
     public int hearts = 3;
     public bool isAttacking;
     public int cooldown = 20;
+    public int bombCooldown = 400;
 
     private static Player player_instance;
 
@@ -28,6 +31,7 @@ class Player : Sprite
 
     public Player()
     {
+
         X = 500;
         Y = 90;
         xSpeed = 1;
@@ -177,14 +181,21 @@ class Player : Sprite
             isAttacking = false;
 
             //Cooldown system so the player dont spam the attack button
+            //The cooldown is reduced on the main loop of the gameScreen
             cooldown = 20;
         }
 
     }
 
-    public void FireSpecial()
+    public bool CanFireSpecial()
     {
-        //To do
+        if (bombCooldown <= 0)
+        {
+            bombCooldown = 400;
+            return true;
+        }
+            
+        else return false;
     }
 
     public void Roll()

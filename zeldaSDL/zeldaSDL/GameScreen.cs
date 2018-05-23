@@ -16,14 +16,12 @@ class GameScreen : Screen
     {
         int keyPressed;
 
-        level = new Level("level1");
+        level = new Level("level1.map");
         character = Player.GetPlayer();
         enemy = new Enemy(50,600);
 
         do
         {
-            
-
             // 1. Draw everything
 
             hardware.ClearScreen();
@@ -94,6 +92,15 @@ class GameScreen : Screen
         {
             character.FireMain();
         }
+        else if (hardware.IsKeyPressed(Hardware.KEY_CTRL))
+        {
+            if (character.CanFireSpecial())
+            {
+                Bomb b = new Bomb(character.X, character.Y);
+                b.Explosion(character, enemy);
+            }
+            
+        }
     }
 
     public void MoveElements()
@@ -113,7 +120,7 @@ class GameScreen : Screen
 
         //Damage collisions
 
-        if (enemy.X < character.Y + 5 && enemy.Y < character.X + 5)
+        if (enemy.X < character.X + 15 && enemy.Y < character.Y + 15)
         {
             if (character.isAttacking)
             {
@@ -126,7 +133,14 @@ class GameScreen : Screen
             character.cooldown--;
             Console.WriteLine(character.cooldown);
         }
-        
+        if (character.bombCooldown >= 0)
+        {
+            character.bombCooldown--;
+            if (character.bombCooldown%100 == 0)
+                Console.WriteLine(character.bombCooldown);
+
+        }
+
     }
 
     public void DrawPlayerHUD()
