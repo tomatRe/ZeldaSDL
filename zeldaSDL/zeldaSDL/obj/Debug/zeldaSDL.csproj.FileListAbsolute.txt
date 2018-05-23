@@ -1,0 +1,61 @@
+c:\users\angela\documents\visual studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.exe.config
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\libfreetype-6.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\libpng12-0.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\libpng12.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\SDL.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\SDL_image.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\SDL_mixer.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\SDL_ttf.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\sprites\link_spriteSheet.png
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\sprites\oktorok.png
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\Tao.Sdl.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\zlib1.dll
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.exe
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.pdb
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.csprojResolveAssemblyReference.cache
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.exe
+C:\Users\angela\Documents\Visual Studio 2015\Projects\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.pdb
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\libfreetype-6.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\libpng12-0.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\libpng12.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\SDL.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\SDL_image.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\SDL_mixer.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\SDL_ttf.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\sprites\link_spriteSheet.png
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\sprites\oktorok.png
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\Tao.Sdl.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\zlib1.dll
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.exe.config
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.exe
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.pdb
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.csproj.CoreCompileInputs.cache
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.csproj.CopyComplete
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.exe
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.pdb
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.csprojAssemblyReference.cache
+C:\Users\toni\source\repos\zeldaSDL\zeldaSDL\bin\Debug\sprites\fullSpriteSheet.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\libfreetype-6.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\libpng12-0.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\libpng12.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\SDL.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\SDL_image.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\SDL_mixer.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\SDL_ttf.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\fullSpriteSheet.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\MenuScreen.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\oktorok.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\SelectArrow.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\welcomeScreen.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\Tao.Sdl.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\zlib1.dll
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.exe.config
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.exe
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\zeldaSDL.pdb
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.csprojAssemblyReference.cache
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.csproj.CoreCompileInputs.cache
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.csproj.CopyComplete
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.exe
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\obj\Debug\zeldaSDL.pdb
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\linkSpriteSheet.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\heart.png
