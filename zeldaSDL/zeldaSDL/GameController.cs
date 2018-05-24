@@ -14,6 +14,8 @@ class GameController
         GameScreen game = new GameScreen(hardware);
         StatsScreen stats = new StatsScreen(hardware);
         CreditsScreen credits = new CreditsScreen(hardware);
+        GameOverScreen end = new GameOverScreen(hardware);
+
         Player p = Player.GetPlayer();
 
         welcome.Run();
@@ -34,8 +36,8 @@ class GameController
             default:
                 break;
         }
-        
 
+        end.Run();
         
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Threading;
 
 class Bomb : Sprite
 {
     const short explosionRadius = 20;
     const short damage = 2;
     DateTime begin = DateTime.Now;
-    DateTime cooldown = new DateTime(0,0,0,0,1,0);
-    DateTime reference = new DateTime(0, 0, 0, 0, 0, 0);
+    int cooldown = 45;//in seconds
+    bool canDropBomb = true;
 
     public Bomb(short X, short Y)
     {
@@ -17,34 +18,39 @@ class Bomb : Sprite
     //Countdown
     private void Update()
     {
-        //To do
+        //to do
     }
 
     public void Explosion(Player p, Enemy e)
     {
         //explosion delay
         //To do
-        /*
-        if (begin - cooldown <= reference)
+        
+        if (begin.Second - cooldown <= 0)
         {
-
-        }*/
+            canDropBomb = true;
+            cooldown = 45;
+        }
 
         //Collision with enemies or player
 
-        if ((p.X >= X - explosionRadius && p.X <= X + explosionRadius) &&
-        (p.Y >= Y - explosionRadius && p.Y <= Y + explosionRadius))
+        if (canDropBomb)
         {
-            p.hearts -= damage; //Extra damage for special move
-        }
+            if ((p.X >= X - explosionRadius && p.X <= X + explosionRadius) &&
+                (p.Y >= Y - explosionRadius && p.Y <= Y + explosionRadius))
+            {
+                    p.hearts -= damage; //Extra damage for special move
+            }
 
-        if ((e.X >= X - explosionRadius && e.X <= X + explosionRadius) &&
-            (e.Y >= Y - explosionRadius && e.Y <= Y + explosionRadius))
-        {
-            e.hearts -= damage;
-        }
+            if ((e.X >= X - explosionRadius && e.X <= X + explosionRadius) &&
+                (e.Y >= Y - explosionRadius && e.Y <= Y + explosionRadius))
+            {
+                e.hearts -= damage;
+            }
 
-        System.Console.WriteLine("EXPLOSION AT : {0} {1}", X, Y);
+            System.Console.WriteLine("EXPLOSION AT : {0} {1}", X, Y);
+        }
+        
         
     }
 }

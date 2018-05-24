@@ -5,12 +5,16 @@ class Key : Sprite
     {
         this.X = X;
         this.Y = Y;
-        //To do
     }
 
-    protected void pickUp()
+    public bool PickUp(short playerX, short playerY)
     {
-        //To do
+        //is the player touching the key?
+        if (playerX <= X + 17 || playerX >= X - 17 &&
+            playerY <= Y + 17 || playerY >= Y - 17)
+            return true;
+        else
+            return false;
     }
 }
 

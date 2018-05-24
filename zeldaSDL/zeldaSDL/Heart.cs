@@ -3,6 +3,8 @@
 
 class Heart : Sprite
 {
+    private bool pickedUp = false;
+
     public Heart(short X, short Y)
     {
         this.X = X;
@@ -11,10 +13,15 @@ class Heart : Sprite
 
     public bool PickUp(short playerX, short playerY)
     {
-        //is the player touching the heart?
-        if (playerX <= X + 17 || playerX >= X - 17 &&
-            playerY <= Y + 17 || playerY >= Y - 17)
-            return true;
+        if (!pickedUp)
+        {
+            //is the player touching the heart?
+            if (playerX <= X + 17 || playerX >= X - 17 &&
+                playerY <= Y + 17 || playerY >= Y - 17)
+                return true;
+            else
+                return false;
+        }
         else
             return false;
     }

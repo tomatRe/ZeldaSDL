@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-
+﻿
 class Player : Sprite
 {
     private const int x_offset = 55;
@@ -12,6 +10,8 @@ class Player : Sprite
     public bool isAttacking;
     public int cooldown = 20;
     public int bombCooldown = 400;
+
+    public bool hasKey = false;
 
     private static Player player_instance;
 

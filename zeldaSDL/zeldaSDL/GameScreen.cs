@@ -4,12 +4,15 @@ using Tao.Sdl;
 
 class GameScreen : Screen
 {
+    bool exit = false;
     Level level;
     Player character;
     Enemy enemy;
+    Key k;
 
     public GameScreen(Hardware hardware) : base(hardware)
     {
+        Console.WriteLine("Game screen created");
     }
 
     public void Run()
@@ -18,6 +21,7 @@ class GameScreen : Screen
 
         level = new Level("level1.map");
         character = Player.GetPlayer();
+        k = new Key(60, 60);
         enemy = new Enemy(50,600);
 
         do
@@ -44,11 +48,15 @@ class GameScreen : Screen
             CheckCollisions();
             pollEvents();
 
-            // 5. Pause game
+            // 5. Check lives
+
+            CheckLives();
+
+            // 6. Pause game
             Thread.Sleep(15);
 
 
-        } while (keyPressed != Hardware.KEY_ESC);
+        } while (!exit);
     }
 
     private void CheckInput()
@@ -99,8 +107,11 @@ class GameScreen : Screen
                 Bomb b = new Bomb(character.X, character.Y);
                 b.Explosion(character, enemy);
             }
-            
+
         }
+        else if (hardware.IsKeyPressed(Hardware.KEY_ESC))
+            exit = true;
+        
     }
 
     public void MoveElements()
@@ -118,9 +129,16 @@ class GameScreen : Screen
         /*if (Heart.PickUp(character.X, character.Y))
             character.hearts++;*/
 
+        //key pickup
+
+        if ((character.X >= k.X - 15 && character.X <= k.X + 15) &&
+                (character.Y >= k.Y - 15 && character.Y <= k.Y + 15))
+            character.hasKey = true;
+
         //Damage collisions
 
-        if (enemy.X < character.X + 15 && enemy.Y < character.Y + 15)
+        if ((character.X >= enemy.X - 30 && character.X <= enemy.X + 30) &&
+                (character.Y >= enemy.Y - 30 && character.Y <= enemy.Y + 30))
         {
             if (character.isAttacking)
             {
@@ -141,6 +159,19 @@ class GameScreen : Screen
 
         }
 
+    }
+
+    public void CheckLives()
+    {
+        if (character.hearts <= 0)
+        {
+            exit = true;
+        }
+
+        if (enemy.hearts < 0)
+        {
+            //enemy = null;
+        }
     }
 
     public void DrawPlayerHUD()
@@ -186,10 +217,17 @@ class GameScreen : Screen
             Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
         */
 
-        hardware.DrawSprite(Sprite.ockorok,
-            (short)(enemy.X- level.XMap),
+        if (enemy.hearts > 0)
+            hardware.DrawSprite(Sprite.ockorok,
+            (short)(enemy.X - level.XMap),
             (short)(enemy.Y - level.YMap),
             enemy.SpriteX, enemy.SpriteY, 68, 63);
+
+        if (!character.hasKey)
+            hardware.DrawSprite(Sprite.objects,
+                (short)(k.X - level.XMap),
+                (short)(k.Y - level.YMap),
+                419, 21, 7, 16);
 
         hardware.DrawSprite(Sprite.link,
             (short)(character.X - level.XMap),

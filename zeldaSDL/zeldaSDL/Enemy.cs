@@ -38,7 +38,8 @@ class Enemy : Sprite
                 {
                     //is inside the window boundaries?
 
-                    if (X <= 1024 - SPRITE_WIDTH && Y <= 720 - SPRITE_WIDTH && X >= 0 && Y >= 0)
+                    if (X <= 1024 - SPRITE_WIDTH &&
+                        Y <= 720 - SPRITE_WIDTH && X >= 0 && Y >= 0)
                     {
                         //Random movements
                         if (i % 2 == 0)
@@ -95,8 +96,7 @@ class Enemy : Sprite
             Console.WriteLine
                 ("Dropped heart at: {0} {1}",X,Y);
 
-            Heart h = new Heart(X,Y);
-
+            Heart h = new Heart(X, Y);
         }
     }
 }

@@ -16,7 +16,7 @@ class Image
         ImagePtr = SdlImage.IMG_Load(fileName);
         if (ImagePtr == IntPtr.Zero)
         {
-            Console.WriteLine("Image not found");
+            Console.WriteLine("Image not found " + fileName);
             Environment.Exit(1);
         }
 
