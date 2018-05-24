@@ -37,9 +37,10 @@ class Sprite
         ("sprites/oktorok.png", 136, 280);
     public static Image heart = new Image
         ("sprites/heart.png", 16, 16);
-
     public static Image objects = new Image
         ("sprites/Overworld.png", 640,576);
+    public static Image key = new Image
+        ("sprites/key.png", 25,25);
 
     private int currentFrameTick;
     private int updatesPerFrame;

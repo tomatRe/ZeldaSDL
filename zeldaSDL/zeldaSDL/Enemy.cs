@@ -32,7 +32,7 @@ class Enemy : Sprite
         {
             if (rnd.Next(1, 100)  <= 5)//can move?
             {
-                Console.WriteLine("Enemy at: {0} {1}", X, Y);
+                //Console.WriteLine("Enemy at: {0} {1}", X, Y);
 
                 for (int i = 0; i < FRAMES; i++)
                 {

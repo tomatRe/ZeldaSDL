@@ -131,26 +131,50 @@ class GameScreen : Screen
 
         //key pickup
 
-        if ((character.X >= k.X - 15 && character.X <= k.X + 15) &&
-                (character.Y >= k.Y - 15 && character.Y <= k.Y + 15))
+        if ((character.X >= k.X - 30 && character.X <= k.X + 30) &&
+                (character.Y >= k.Y - 30 && character.Y <= k.Y + 30))
             character.hasKey = true;
 
         //Damage collisions
 
         if ((character.X >= enemy.X - 30 && character.X <= enemy.X + 30) &&
                 (character.Y >= enemy.Y - 30 && character.Y <= enemy.Y + 30))
-        {
             if (character.isAttacking)
-            {
-                Console.WriteLine("Hit!");
-                enemy.hearts--;
-            }
-        }
+                switch (character.direction)
+                {
+                    case 0://up
+                        if (enemy.Y >= character.Y && enemy.Y <= character.Y + 20)
+                        {
+                            Console.WriteLine("Hit!");
+                            enemy.hearts--;
+                        }
+                        break;
+                    case 1://down
+                        if (enemy.Y <= character.Y && enemy.Y <= character.Y - 20)
+                        {
+                            Console.WriteLine("Hit!");
+                            enemy.hearts--;
+                        }
+                        break;
+                    case 2://left
+                        if (enemy.X <= character.X && enemy.X >= character.X - 20)
+                        {
+                            Console.WriteLine("Hit!");
+                            enemy.hearts--;
+                        }
+                        break;
+                    case 3://right
+                        if (enemy.X >= character.X && enemy.X <= character.X + 20)
+                        {
+                            Console.WriteLine("Hit!");
+                            enemy.hearts--;
+                        }
+                        break;
+
+                }
         if (character.cooldown >= 0)
-        {
             character.cooldown--;
-            Console.WriteLine(character.cooldown);
-        }
+
         if (character.bombCooldown >= 0)
         {
             character.bombCooldown--;
@@ -224,10 +248,10 @@ class GameScreen : Screen
             enemy.SpriteX, enemy.SpriteY, 68, 63);
 
         if (!character.hasKey)
-            hardware.DrawSprite(Sprite.objects,
+            hardware.DrawSprite(Sprite.key,
                 (short)(k.X - level.XMap),
                 (short)(k.Y - level.YMap),
-                419, 21, 7, 16);
+                0, 0, 25, 25);
 
         hardware.DrawSprite(Sprite.link,
             (short)(character.X - level.XMap),

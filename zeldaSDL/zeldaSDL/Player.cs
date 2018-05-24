@@ -34,8 +34,8 @@ class Player : Sprite
 
         X = 500;
         Y = 90;
-        xSpeed = 1;
-        ySpeed = 1;
+        xSpeed = 2;
+        ySpeed = 2;
         direction = UP;
 
         SpriteX = 0;
