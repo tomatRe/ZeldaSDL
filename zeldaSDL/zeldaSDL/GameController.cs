@@ -20,25 +20,33 @@ class GameController
         Player p = Player.GetPlayer();
 
         welcome.Run();
-        menu.Run();
 
-        switch (menu.option)
+        do
         {
-            case 0:
-                help.Run();
-                game.Run();
-                end.Run();
-                break;
-            case 1:
-                stats.Run();
-                break;
-            case 2:
-                credits.Run();
-                break;
+            hardware.ClearScreen();
+            menu.exit = false;
+            menu.option = -1;
+            Console.WriteLine("Menu");
+            menu.Run();
 
-            default:
-                break;
-        }
+            switch (menu.option)
+            {
+                case 0:
+                    help.Run();
+                    game.Run();
+                    end.Run();
+                    break;
+                case 1:
+                    stats.Run();
+                    break;
+                case 2:
+                    credits.Run();
+                    break;
+            }
+            Thread.Sleep(50);
+
+        } while (menu.option != 3 ||
+        hardware.IsKeyPressed(Hardware.KEY_ESC));
     }
 }
 
