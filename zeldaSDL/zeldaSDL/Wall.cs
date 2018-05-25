@@ -3,9 +3,8 @@ class Wall : Sprite
 {
     public Wall()
     {
-        //to improve once the sprites come
-        SpriteX = 0;
-        SpriteY = 0;
+        SpriteX = 351;
+        SpriteY = 50;
     }
 
     public Wall(short X, short Y)

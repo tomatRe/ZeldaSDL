@@ -18,8 +18,8 @@ class Level : Map
     public short XMap { get; set; }
     public short YMap { get; set; }
 
-    public List<Sprite> Walls { get; }
-    public List<Sprite> Doors { get; }
+    public List<Wall> Walls { get; }
+    public List<Door> Doors { get; }
     public List<Key> Keys { get; }
     public List<EnemySpawn> EnemySpawns { get; }
     public List<PlayerSpawn> playerSpawns { get; }
@@ -27,6 +27,11 @@ class Level : Map
 
     public Level(string levelName)
     {
+        Walls = new List<Wall>();
+        Doors = new List<Door>();
+        Keys = new List<Key>();
+        EnemySpawns = new List<EnemySpawn>();
+        playerSpawns = new List<PlayerSpawn>();
         XMap = 0;
         YMap = 0;
 

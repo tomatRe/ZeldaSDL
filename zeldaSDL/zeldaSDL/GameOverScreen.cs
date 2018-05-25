@@ -14,7 +14,7 @@ class GameOverScreen : Screen
 
     public GameOverScreen(Hardware hardware) : base(hardware)
     {
-        //imageW = new Image("sprites/gameOverScreen.png", 1024, 720);
+        imageW = new Image("sprites/gameOverScreen.png", 1024, 720);
 
         Console.WriteLine("Game Over Screen Created");
         exit = false;
@@ -25,7 +25,7 @@ class GameOverScreen : Screen
         while (exit != true)
         {
             hardware.ClearScreen();
-            //hardware.DrawImage(imageW);
+            hardware.DrawImage(imageW);
             hardware.UpdateScreen();
 
             if (hardware.IsKeyPressed(Hardware.KEY_SPACE))

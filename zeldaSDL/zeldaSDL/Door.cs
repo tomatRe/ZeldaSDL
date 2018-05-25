@@ -8,6 +8,8 @@ class Door : Sprite
     {
         this.X = X;
         this.Y = Y;
+        SpriteX = 530;
+        SpriteY = 49;
         locked = true;
     }
 
@@ -31,8 +33,8 @@ class Door : Sprite
             if (p.hasKey)
             {
                 locked = false;
-                //Set sprite to unlocked door (to do)
-
+                //Set sprite to unlocked door
+                SpriteX = 562;
             }
         }
     }

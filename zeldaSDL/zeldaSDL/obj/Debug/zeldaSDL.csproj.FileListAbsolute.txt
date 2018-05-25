@@ -61,3 +61,7 @@ C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\linkSprit
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\heart.png
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\Overworld.png
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\key.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\gameOverScreen.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\helpScreen.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\statsScreen.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\creditsScreen.png

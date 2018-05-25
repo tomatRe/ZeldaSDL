@@ -217,29 +217,21 @@ class GameScreen : Screen
     {
         /*hardware.DrawSprite(level.Floor,
           0, 0, level.XMap, level.YMap, GameController.SCREEN_WIDTH,
-          GameController.SCREEN_HEIGHT);
+          GameController.SCREEN_HEIGHT);*/
 
         foreach (Wall wall in level.Walls)
-            hardware.DrawSprite(Sprite.SpriteSheet,
+            hardware.DrawSprite(Sprite.objects,
             (short)(wall.X - level.XMap),
             (short)(wall.Y - level.YMap),
-            wall.SpriteX, wall.SpriteY,
-            Sprite.SPRITE_WIDTH,
-            Sprite.SPRITE_HEIGHT);
+            351, 50,
+            48,46);
 
         foreach (Door d in level.Doors)
-            hardware.DrawSprite(Sprite.SpriteSheet,
+            hardware.DrawSprite(Sprite.objects,
             (short)(d.X - level.XMap),
             (short)(d.Y - level.YMap),
             d.SpriteX, d.SpriteY,
             Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
-
-        hardware.DrawSprite(Sprite.SpriteSheet,
-            (short)(level.Key.X - level.XMap),
-            (short)(level.Key.Y - level.YMap),
-            level.Key.SpriteX, level.Key.SpriteY,
-            Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
-        */
 
         if (enemy.hearts > 0)
             hardware.DrawSprite(Sprite.ockorok,

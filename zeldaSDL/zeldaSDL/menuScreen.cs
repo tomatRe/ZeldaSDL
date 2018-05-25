@@ -8,7 +8,7 @@ using Tao.Sdl;
 class MenuScreen : Screen
 {
     public int option { get; set; }
-    private bool exit;
+    public bool exit;
     private short[] yPositionsArray = { 365, 420, 470, 550 };
     private short position = 0;
     Image imagen;

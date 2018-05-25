@@ -12,6 +12,7 @@ class GameController
         WelcomeScreen welcome = new WelcomeScreen(hardware);
         MenuScreen menu = new MenuScreen(hardware);
         GameScreen game = new GameScreen(hardware);
+        HelpScreen help = new HelpScreen(hardware);
         StatsScreen stats = new StatsScreen(hardware);
         CreditsScreen credits = new CreditsScreen(hardware);
         GameOverScreen end = new GameOverScreen(hardware);
@@ -24,21 +25,20 @@ class GameController
         switch (menu.option)
         {
             case 0:
+                help.Run();
                 game.Run();
+                end.Run();
                 break;
             case 1:
-                stats.Show();
+                stats.Run();
                 break;
             case 2:
-                credits.Show();
+                credits.Run();
                 break;
 
             default:
                 break;
         }
-
-        end.Run();
-        
     }
 }
 
