@@ -3,8 +3,8 @@ class Floor : Sprite
 {
     public Floor()
     {
-        SpriteX = 351;
-        SpriteY = 50;
+        SpriteX = 223;
+        SpriteY = 463;
     }
 
     public Floor(short X, short Y)
@@ -13,7 +13,3 @@ class Floor : Sprite
         this.Y = Y;
     }
 }
-
-
-
-

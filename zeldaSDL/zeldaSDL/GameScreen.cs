@@ -215,9 +215,12 @@ class GameScreen : Screen
 
     public void DrawLevel()
     {
-        /*hardware.DrawSprite(level.Floor,
-          0, 0, level.XMap, level.YMap, GameController.SCREEN_WIDTH,
-          GameController.SCREEN_HEIGHT);*/
+        foreach (Floor floor in level.floorTiles)
+            hardware.DrawSprite(Sprite.objects,
+            (short)(floor.X - level.XMap),
+            (short)(floor.Y - level.YMap),
+            223, 463,
+            48, 46);
 
         foreach (Wall wall in level.Walls)
             hardware.DrawSprite(Sprite.objects,
