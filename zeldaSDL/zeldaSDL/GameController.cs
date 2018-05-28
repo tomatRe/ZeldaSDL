@@ -18,6 +18,8 @@ class GameController
         GameOverScreen end = new GameOverScreen(hardware);
 
         Player p = Player.GetPlayer();
+        DateTime begin;
+        DateTime timeEnd;
 
         welcome.Run();
 
@@ -33,7 +35,10 @@ class GameController
             {
                 case 0:
                     help.Run();
+                    begin = DateTime.Now;
                     game.Run();
+                    timeEnd = DateTime.Now;
+                    Console.WriteLine(timeEnd - begin);
                     end.Run();
                     break;
                 case 1:

@@ -23,6 +23,7 @@ class Level : Map
     public List<Key> Keys { get; }
     public List<EnemySpawn> EnemySpawns { get; }
     public List<PlayerSpawn> playerSpawns { get; }
+    public List<Floor> floorTiles { get; }
     //------------------------
 
     public Level(string levelName)
@@ -32,6 +33,7 @@ class Level : Map
         Keys = new List<Key>();
         EnemySpawns = new List<EnemySpawn>();
         playerSpawns = new List<PlayerSpawn>();
+        floorTiles = new List<Floor>();
         XMap = 0;
         YMap = 0;
 
@@ -42,68 +44,109 @@ class Level : Map
         }
         else
         {
-            string[] data = File.ReadAllLines(levelName);
 
-            if (data.Length > 0)
+            try
             {
-                Width = (short)(data[0].Length * Sprite.SPRITE_WIDTH);
-                Height = (short)(data.Length * Sprite.SPRITE_HEIGHT);
+                StreamReader data = File.OpenText(levelName);
+                string line = "";
+                short numLines = 0;
 
-                for (int i = 0; i < data.Length; i++)
+                do
                 {
-                    for (int j = 0; j < data[i].Length; j++)
+                    line = data.ReadLine();
+                    if (line == null)
+                        Console.WriteLine("Level load success");
+                    else
                     {
+                        numLines++;
 
-                        switch(data[i][j])
+                        Width = (short)(line.Length * Sprite.SPRITE_WIDTH);
+                        Height = (short)(numLines * Sprite.SPRITE_HEIGHT);
+
+                        for (int i = 0; i < line.Length; i++)
                         {
-                            case 'w'://walls(boundaries)
-                                AddWall(new Wall(
-                                    (short)(j * Sprite.SPRITE_WIDTH),
-                                    (short)(i * Sprite.SPRITE_HEIGHT)));
-                                break;
 
-                            case 'X'://Origin of the level (also a wall)
-                                XMap = (short)(j * Sprite.SPRITE_WIDTH);
-                                YMap = (short)(i * Sprite.SPRITE_HEIGHT);
+                            switch (line[i])
+                            {
+                                case 'w'://walls(boundaries)
+                                    AddWall(new Wall(
+                                        (short)
+                                        (i * Sprite.SPRITE_WIDTH),
+                                        (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT)));
+                                    break;
 
-                                AddWall(new Wall(
-                                    (short)(j * Sprite.SPRITE_WIDTH),
-                                    (short)(i * Sprite.SPRITE_HEIGHT)));
-                                break;
+                                case 'X'://Origin of the level (also a wall)
+                                    XMap = (short)
+                                        (i * Sprite.SPRITE_WIDTH);
+                                    YMap = (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT);
 
-                            case 'x'://Origin of the level(without wall)
-                                XMap = (short)(j * Sprite.SPRITE_WIDTH);
-                                YMap = (short)(i * Sprite.SPRITE_HEIGHT);
-                                break;
+                                    AddWall(new Wall(
+                                        (short)
+                                        (i * Sprite.SPRITE_WIDTH),
+                                        (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT)));
+                                    break;
 
-                            case 'd'://Add door
-                                AddDoor(new Door(
-                                    (short)(j * Sprite.SPRITE_WIDTH),
-                                    (short)(i * Sprite.SPRITE_HEIGHT)));
-                                break;
+                                case 'x'://Origin of the level(without wall)
+                                    XMap = (short)
+                                        (i * Sprite.SPRITE_WIDTH);
+                                    YMap = (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT);
+                                    break;
 
-                            case 'k'://Add key
-                                AddKey(new Key(
-                                    (short)(j * Sprite.SPRITE_WIDTH),
-                                    (short)(i * Sprite.SPRITE_HEIGHT)));
-                                break;
+                                case 'd'://Add door
+                                    AddDoor(new Door(
+                                        (short)
+                                        (i * Sprite.SPRITE_WIDTH),
+                                        (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT)));
+                                    break;
 
-                            case 'e'://Add EnemySpawner
-                                AddEnemy(new EnemySpawn((short)j,
-                                    (short)i));
-                                break;
+                                case 'k'://Add key
+                                    AddKey(new Key(
+                                        (short)
+                                        (i * Sprite.SPRITE_WIDTH),
+                                        (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT)));
+                                    break;
 
-                            case 'p'://Add PlayerSpawn
-                                AddPlayer(new PlayerSpawn((short)j,
-                                    (short)i));
-                                break;
+                                case 'e'://Add EnemySpawner
+                                    AddEnemy(new EnemySpawn(
+                                        (short)i, numLines));
+                                    break;
 
-                            default:
-                                DrawGrass();
-                                break;
+                                case 'p'://Add PlayerSpawn
+                                    AddPlayer(new PlayerSpawn(
+                                        (short)i, numLines));
+                                    break;
+
+                                default://Add floor
+                                    DrawGrass(new Floor(
+                                        (short)
+                                        (i * Sprite.SPRITE_WIDTH),
+                                        (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT)));
+                                    break;
+                            }
                         }
                     }
-                }
+
+                } while (line != null);
+                data.Close();
+            }
+            catch (PathTooLongException)
+            {
+                Console.WriteLine("PATH TOO LONG");
+            }
+            catch (IOException ioEx)
+            {
+                Console.WriteLine("INPUT/OUTPUT ERROR: " + ioEx.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR: " + e.Message);
             }
         }
     }
@@ -133,8 +176,8 @@ class Level : Map
         playerSpawns.Add(p);
     }
 
-    private void DrawGrass()
+    private void DrawGrass(Floor f)
     {
-        //to do
+        floorTiles.Add(f);
     }
 }

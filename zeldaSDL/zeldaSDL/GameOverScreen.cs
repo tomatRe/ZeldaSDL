@@ -32,5 +32,10 @@ class GameOverScreen : Screen
                 exit = true;
         }
     }
+
+    public void DrawText()
+    {
+        //to do
+    }
 }
 
