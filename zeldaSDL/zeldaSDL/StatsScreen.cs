@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Threading;
 using System.IO;
+using Tao.Sdl;
 
 class StatsScreen : Screen
 {
     Image imageW;
+    Font font;
+    IntPtr score, time, levelReached;
 
+    short line = 300;
     bool exit;
 
     public StatsScreen(Hardware hardware) : base(hardware)
@@ -22,6 +26,7 @@ class StatsScreen : Screen
         {
             hardware.ClearScreen();
             hardware.DrawImage(imageW);
+            ReadStats();
             hardware.UpdateScreen();
             Thread.Sleep(50);
 
@@ -86,8 +91,7 @@ class StatsScreen : Screen
             {
                 StreamWriter data = File.AppendText("StatsFile.st");
 
-                string line = username + "-" + score +
-                    "-" + time + "-" + levelReached;
+                string line = score + "-" + time + "-" + levelReached;
 
                 data.WriteLine(line);
 
@@ -110,7 +114,22 @@ class StatsScreen : Screen
 
     public void DrawStats(string[] dataArray)
     {
-        //To do
+        Sdl.SDL_Color red = new Sdl.SDL_Color(0, 255, 0);
+
+        score = SdlTtf.TTF_RenderText_Solid
+            (font.GetFontType(), dataArray[0].ToString(), red);
+        time = SdlTtf.TTF_RenderText_Solid
+            (font.GetFontType(), dataArray[1].ToString(), red);
+        levelReached = SdlTtf.TTF_RenderText_Solid
+            (font.GetFontType(), dataArray[2].ToString(), red);
+
+        hardware.WriteText
+            (score, 150, line);
+        hardware.WriteText
+            (time, 360, line);
+        hardware.WriteText
+            (levelReached, 570, line);
+        line += 20;
     }
 
     private void EmptyStats()

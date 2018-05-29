@@ -180,6 +180,13 @@ class Hardware
         Sdl.SDL_BlitSurface(img.ImagePtr, ref source, screen, ref target);
     }
 
+    public void WriteText(IntPtr textAsImage, short x, short y)
+    {
+        Sdl.SDL_Rect src = new Sdl.SDL_Rect(0, 0, screenWidth, screenHeight);
+        Sdl.SDL_Rect dest = new Sdl.SDL_Rect(x, y, screenWidth, screenHeight);
+        Sdl.SDL_BlitSurface(textAsImage, ref src, screen, ref dest);
+    }
+
     // Draws a sprite from a sprite sheet in the specified X and Y position of the screen
     // The sprite to be drawn is determined by the x and y 
     //      coordinates within the image, and the width and height to be cropped

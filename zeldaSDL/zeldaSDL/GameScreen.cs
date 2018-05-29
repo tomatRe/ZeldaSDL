@@ -9,6 +9,7 @@ class GameScreen : Screen
     Player character;
     Enemy enemy;
     Key k;
+    Bomb b;
 
     public GameScreen(Hardware hardware) : base(hardware)
     {
@@ -104,8 +105,7 @@ class GameScreen : Screen
         {
             if (character.CanFireSpecial())
             {
-                Bomb b = new Bomb(character.X, character.Y);
-                b.Explosion(character, enemy);
+                b = new Bomb(character.X, character.Y);
             }
 
         }
@@ -180,8 +180,10 @@ class GameScreen : Screen
             character.bombCooldown--;
             if (character.bombCooldown%100 == 0)
                 Console.WriteLine(character.bombCooldown);
-
         }
+
+        if (b != null)
+            b.Update(character, enemy);
 
     }
 

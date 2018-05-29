@@ -65,3 +65,5 @@ C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\gameOverS
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\helpScreen.png
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\statsScreen.png
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\creditsScreen.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\fonts\lato.ttf
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\fonts\prince_valiant.ttf
