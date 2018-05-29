@@ -5,7 +5,8 @@ class Bomb : Sprite
 {
     const short explosionRadius = 20;
     const short damage = 2;
-    DateTime begin = DateTime.Now;
+    DateTime begin;
+    DateTime end;
     int cooldown = 45;//in seconds
     bool canDropBomb = true;
 
@@ -13,24 +14,33 @@ class Bomb : Sprite
     {
         this.X = X;
         this.Y = Y;
+        begin = DateTime.Now;
     }
 
     //Countdown
-    private void Update()
+    public void Update(Player p, Enemy e)
     {
-        //to do
-    }
-
-    public void Explosion(Player p, Enemy e)
-    {
-        //explosion delay
-        //To do
-        
-        if (begin.Second - cooldown <= 0)
+        if (p.CanFireSpecial())
         {
             canDropBomb = true;
             cooldown = 45;
+            begin = DateTime.Now;
         }
+        else
+            canDropBomb = false;
+
+        if (canDropBomb)
+        {
+            end = new DateTime(0,0,0,0,0,5);
+            if (begin.Second - end.Second <= 0)
+                Explosion(p, e);
+        }
+
+        Console.WriteLine(begin - end);
+    }
+
+    private void Explosion(Player p, Enemy e)
+    {
 
         //Collision with enemies or player
 
@@ -48,7 +58,7 @@ class Bomb : Sprite
                 e.hearts -= damage;
             }
 
-            System.Console.WriteLine("EXPLOSION AT : {0} {1}", X, Y);
+            Console.WriteLine("EXPLOSION AT : {0} {1}", X, Y);
         }
         
         

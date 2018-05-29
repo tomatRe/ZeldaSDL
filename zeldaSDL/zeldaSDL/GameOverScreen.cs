@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Tao.Sdl;
 
 
@@ -35,6 +36,8 @@ class GameOverScreen : Screen
             if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
                 exit = true;
         }
+
+        WriteStats("100",time.ToString(),"1");
     }
 
     public void DrawText()
@@ -53,6 +56,40 @@ class GameOverScreen : Screen
             (levelReached, 340, 513);
         hardware.WriteText
             (score, 340, 586);
+    }
+
+    public void WriteStats(string score,
+        string time, string levelReached)
+    {
+        if (!File.Exists("StatsFile.st"))
+        {
+            Console.WriteLine
+                ("The Stats file does not exist or has errors," +
+                " Creating a new one...");
+            File.Create("StatsFile.st");
+        }
+        else
+        {
+            try
+            {
+                StreamWriter data = File.AppendText("StatsFile.st");
+                string line = score + "-" + time + "-" + levelReached;
+                data.WriteLine(line);
+                data.Close();
+            }
+            catch (PathTooLongException)
+            {
+                Console.WriteLine("PATH TOO LONG");
+            }
+            catch (IOException ioEx)
+            {
+                Console.WriteLine("INPUT/OUTPUT ERROR: " + ioEx.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR: " + e.Message);
+            }
+        }
     }
 }
 

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Collections.Generic;
-using System.Text;
-
 
 class GameController
 {
@@ -11,20 +8,20 @@ class GameController
         Hardware hardware = new Hardware(1024, 720, 24, false);
         WelcomeScreen welcome = new WelcomeScreen(hardware);
         MenuScreen menu = new MenuScreen(hardware);
-        GameScreen game = new GameScreen(hardware);
-        HelpScreen help = new HelpScreen(hardware);
-        StatsScreen stats = new StatsScreen(hardware);
-        CreditsScreen credits = new CreditsScreen(hardware);
-        GameOverScreen end = new GameOverScreen(hardware);
-
-        Player p = Player.GetPlayer();
-        DateTime begin;
-        DateTime timeEnd;
 
         welcome.Run();
 
         do
         {
+            GameScreen game = new GameScreen(hardware);
+            HelpScreen help = new HelpScreen(hardware);
+            StatsScreen stats = new StatsScreen(hardware);
+            CreditsScreen credits = new CreditsScreen(hardware);
+
+            Player p = Player.GetPlayer();
+            DateTime begin;
+            DateTime timeEnd;
+
             hardware.ClearScreen();
             menu.exit = false;
             menu.option = -1;
@@ -38,7 +35,8 @@ class GameController
                     begin = DateTime.Now;
                     game.Run();
                     timeEnd = DateTime.Now;
-                    Console.WriteLine(timeEnd - begin);
+                    TimeSpan time = timeEnd - begin;
+                    GameOverScreen end = new GameOverScreen(hardware, time);
                     end.Run();
                     break;
                 case 1:

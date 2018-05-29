@@ -10,7 +10,7 @@ class Enemy : Sprite
     Random rnd = new Random();
     const int FRAMES = 10;
     const short DROPRATE = 1;
-    public int hearts = 3;
+    public int hearts = 2;
     public bool isAttacking;
 
     public Enemy(short X, short Y)
@@ -88,6 +88,8 @@ class Enemy : Sprite
         //play animation (To do)
 
         //Despawn (To do)
+
+        SpriteX = 100;
 
         //Drop
 

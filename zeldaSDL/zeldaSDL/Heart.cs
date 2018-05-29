@@ -16,8 +16,8 @@ class Heart : Sprite
         if (!pickedUp)
         {
             //is the player touching the heart?
-            if (playerX <= X + 17 || playerX >= X - 17 &&
-                playerY <= Y + 17 || playerY >= Y - 17)
+            if ((playerX >= X - 17 && playerX <= X + 17) &&
+                (playerY >= Y - 17 && playerY <= Y + 17))
                 return true;
             else
                 return false;
