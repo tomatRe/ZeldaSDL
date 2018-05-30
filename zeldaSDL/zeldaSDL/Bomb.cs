@@ -3,6 +3,7 @@ using System.Threading;
 
 class Bomb : Sprite
 {
+
     const short explosionRadius = 20;
     const short damage = 2;
     DateTime begin;
@@ -15,6 +16,13 @@ class Bomb : Sprite
         this.X = X;
         this.Y = Y;
         begin = DateTime.Now;
+    }
+
+    //This really does nothing, but here it is...
+    struct Bomba
+    {
+        private bool exploded;
+        private bool onRange;
     }
 
     //Countdown

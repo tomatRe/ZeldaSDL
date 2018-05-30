@@ -4,28 +4,6 @@ using System.Collections.Generic;
 
 class Level : Map
 {
-    //----item variables----
-    public int xKeyPosition { get; set; }
-    public int yKeyPosition { get; set; }
-
-    public int xDoorPosition { get; set; }
-    public int yDoorPosition { get; set; }
-    //------------------------
-
-    //----level variables----
-    public short Width { get; set; }
-    public short Height { get; set; }
-    public short XMap { get; set; }
-    public short YMap { get; set; }
-
-    public List<Wall> Walls { get; }
-    public List<Door> Doors { get; }
-    public List<Key> Keys { get; }
-    public List<EnemySpawn> EnemySpawns { get; }
-    public List<PlayerSpawn> playerSpawns { get; }
-    public List<Floor> floorTiles { get; }
-    //------------------------
-
     public Level(string levelName)
     {
         Walls = new List<Wall>();

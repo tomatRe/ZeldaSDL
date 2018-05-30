@@ -5,7 +5,7 @@ using Tao.Sdl;
 class GameScreen : Screen
 {
     bool exit = false;
-    Level level;
+    Map map;
     Player character;
     Enemy enemy;
     Key k;
@@ -20,10 +20,8 @@ class GameScreen : Screen
     {
         int keyPressed;
 
-        level = new Level("level1.map");
+        map = new Map();
         character = Player.GetPlayer();
-        k = new Key(60, 60);
-        enemy = new Enemy(50,600);
 
         do
         {
@@ -217,43 +215,50 @@ class GameScreen : Screen
 
     public void DrawLevel()
     {
-        foreach (Floor floor in level.floorTiles)
-            hardware.DrawSprite(Sprite.objects,
-            (short)(floor.X - level.XMap),
-            (short)(floor.Y - level.YMap),
-            223, 463,
-            48, 46);
+        try
+        {
+            foreach (Floor floor in map.floorTiles)
+                hardware.DrawSprite(Sprite.objects,
+                (short)(floor.X - map.XMap),
+                (short)(floor.Y - map.YMap),
+                223, 463,
+                48, 46);
 
-        foreach (Wall wall in level.Walls)
-            hardware.DrawSprite(Sprite.objects,
-            (short)(wall.X - level.XMap),
-            (short)(wall.Y - level.YMap),
-            351, 50,
-            48,46);
+            foreach (Wall wall in map.Walls)
+                hardware.DrawSprite(Sprite.objects,
+                (short)(wall.X - map.XMap),
+                (short)(wall.Y - map.YMap),
+                351, 50,
+                48, 46);
 
-        foreach (Door d in level.Doors)
-            hardware.DrawSprite(Sprite.objects,
-            (short)(d.X - level.XMap),
-            (short)(d.Y - level.YMap),
-            d.SpriteX, d.SpriteY,
-            Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
+            foreach (Door d in map.Doors)
+                hardware.DrawSprite(Sprite.objects,
+                (short)(d.X - map.XMap),
+                (short)(d.Y - map.YMap),
+                d.SpriteX, d.SpriteY,
+                Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
 
-        if (enemy.hearts > 0)
-            hardware.DrawSprite(Sprite.ockorok,
-            (short)(enemy.X - level.XMap),
-            (short)(enemy.Y - level.YMap),
-            enemy.SpriteX, enemy.SpriteY, 68, 63);
+            if (enemy.hearts > 0)
+                hardware.DrawSprite(Sprite.ockorok,
+                (short)(enemy.X - map.XMap),
+                (short)(enemy.Y - map.YMap),
+                enemy.SpriteX, enemy.SpriteY, 68, 63);
 
-        if (!character.hasKey)
-            hardware.DrawSprite(Sprite.key,
-                (short)(k.X - level.XMap),
-                (short)(k.Y - level.YMap),
-                0, 0, 25, 25);
+            if (!character.hasKey)
+                hardware.DrawSprite(Sprite.key,
+                    (short)(k.X - map.XMap),
+                    (short)(k.Y - map.YMap),
+                    0, 0, 25, 25);
 
-        hardware.DrawSprite(Sprite.link,
-            (short)(character.X - level.XMap),
-            (short)(character.Y - level.YMap),
-            character.SpriteX, character.SpriteY, 55, 60);
+            hardware.DrawSprite(Sprite.link,
+                (short)(character.X - map.XMap),
+                (short)(character.Y - map.YMap),
+                character.SpriteX, character.SpriteY, 55, 60);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine("FAILED LOADING LEVEL : "+ ex);
+        }
     }
 
     public static void PauseTillNextFrame(int sleeptime)
