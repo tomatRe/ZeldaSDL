@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 class Level : Map
 {
+
     public Level(string levelName)
     {
         Walls = new List<Wall>();
