@@ -6,16 +6,21 @@ using Tao.Sdl;
 class StatsScreen : Screen
 {
     Image imageW;
+    Image imageW_es;
     Font font;
     IntPtr score, time, levelReached;
 
+    byte languaje;
     short line = 300;
     bool exit;
 
-    public StatsScreen(Hardware hardware) : base(hardware)
+    public StatsScreen(Hardware hardware, byte languaje) : base(hardware)
     {
         imageW = new Image("sprites/statsScreen.png", 1024, 720);
+        imageW_es = new Image("sprites/statsScreen_es.png", 1024, 720);
         font = new Font("fonts/lato.ttf", 20);
+
+        this.languaje = languaje;
 
         Console.WriteLine("Stats Screen Created");
         exit = false;
@@ -25,7 +30,10 @@ class StatsScreen : Screen
     {
 
         hardware.ClearScreen();
-        hardware.DrawImage(imageW);
+        if(languaje == 0)
+            hardware.DrawImage(imageW);
+        if(languaje == 1)
+            hardware.DrawImage(imageW_es);
         ReadStats();
         hardware.UpdateScreen();
 

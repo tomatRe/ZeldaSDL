@@ -7,16 +7,18 @@ class GameController
     {
         Hardware hardware = new Hardware(1024, 720, 24, false);
         WelcomeScreen welcome = new WelcomeScreen(hardware);
-        MenuScreen menu = new MenuScreen(hardware);
-
+        LanguageSelectScreen languaje = new LanguageSelectScreen(hardware);
+        
         welcome.Run();
+        languaje.Run();
+        MenuScreen menu = new MenuScreen(hardware, languaje.languaje);
 
         do
         {
             GameScreen game = new GameScreen(hardware);
-            HelpScreen help = new HelpScreen(hardware);
-            StatsScreen stats = new StatsScreen(hardware);
-            CreditsScreen credits = new CreditsScreen(hardware);
+            HelpScreen help = new HelpScreen(hardware, languaje.languaje);
+            StatsScreen stats = new StatsScreen(hardware, languaje.languaje);
+            CreditsScreen credits = new CreditsScreen(hardware, languaje.languaje);
 
             Player p = Player.GetPlayer();
             DateTime begin;
@@ -36,7 +38,7 @@ class GameController
                     game.Run();
                     timeEnd = DateTime.Now;
                     TimeSpan time = timeEnd - begin;
-                    GameOverScreen end = new GameOverScreen(hardware, time);
+                    GameOverScreen end = new GameOverScreen(hardware, time, languaje.languaje);
                     end.Run();
                     break;
                 case 1:

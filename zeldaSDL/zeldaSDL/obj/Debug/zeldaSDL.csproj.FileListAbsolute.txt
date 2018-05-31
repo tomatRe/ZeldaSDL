@@ -67,3 +67,10 @@ C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\statsScre
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\creditsScreen.png
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\fonts\lato.ttf
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\fonts\prince_valiant.ttf
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\creditsScreen_es.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\gameOverScreen_es.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\helpScreen_es.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\LanguajeSelectScreen.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\statsScreen_es.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\SelectArrow_W.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\MenuScreen_es.png

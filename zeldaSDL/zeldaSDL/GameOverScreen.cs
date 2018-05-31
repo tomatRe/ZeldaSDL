@@ -7,16 +7,20 @@ class GameOverScreen : Screen
 {
 
     Image imageW;
+    Image imageW_es;
     TimeSpan time;
     Font font;
     IntPtr levelReached, timeSpent, score;
     bool exit;
+    byte languaje;
 
-    public GameOverScreen(Hardware hardware, TimeSpan time) : base(hardware)
+    public GameOverScreen(Hardware hardware, TimeSpan time, byte languaje) : base(hardware)
     {
         font = new Font("fonts/lato.ttf", 20);
         imageW = new Image("sprites/gameOverScreen.png", 1024, 720);
+        imageW_es = new Image("sprites/gameOverScreen_es.png", 1024, 720);
 
+        this.languaje = languaje;
         Console.WriteLine("Game Over Screen Created");
         this.time = time;
         exit = false;
@@ -29,7 +33,12 @@ class GameOverScreen : Screen
         while (exit != true)
         {
             hardware.ClearScreen();
-            hardware.DrawImage(imageW);
+
+            if (languaje == 0)
+                hardware.DrawImage(imageW);
+            if (languaje == 1)
+                hardware.DrawImage(imageW_es);
+
             DrawText();
             hardware.UpdateScreen();
 

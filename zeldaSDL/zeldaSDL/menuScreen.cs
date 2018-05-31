@@ -11,15 +11,20 @@ class MenuScreen : Screen
     public bool exit;
     private short[] yPositionsArray = { 365, 420, 470, 550 };
     private short position = 0;
+
+    byte languaje;
     Image imagen;
+    Image image_es;
     Image cursor;
 
-    public MenuScreen(Hardware hardware) : base(hardware)
+    public MenuScreen(Hardware hardware, byte languaje) : base(hardware)
     {
         imagen = new Image("sprites/MenuScreen.png", 1024, 720);
+        image_es = new Image("sprites/MenuScreen_es.png", 1024, 720);
         cursor = new Image("sprites/SelectArrow.png",78,78);
         cursor.X = 200;
         cursor.Y = 365;
+        this.languaje = languaje;
         exit = false;
     }
 
@@ -33,7 +38,12 @@ class MenuScreen : Screen
         {
             hardware.ClearScreen();
             WaitForNextFrame(40);
-            hardware.DrawImage(imagen);
+
+            if(languaje == 0)
+                hardware.DrawImage(imagen);
+            if (languaje == 1)
+                hardware.DrawImage(image_es);
+
             hardware.DrawImage(cursor);
             hardware.UpdateScreen();
 

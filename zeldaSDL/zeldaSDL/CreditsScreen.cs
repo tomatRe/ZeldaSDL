@@ -4,12 +4,17 @@ using System.Threading;
 class CreditsScreen : Screen
 {
     Image imageW;
+    Image imageW_es;
 
+    byte languaje;
     bool exit;
 
-    public CreditsScreen(Hardware hardware) : base(hardware)
+    public CreditsScreen(Hardware hardware, byte languaje) : base(hardware)
     {
         imageW = new Image("sprites/creditsScreen.png", 1024, 720);
+        imageW_es = new Image("sprites/creditsScreen_es.png", 1024, 720);
+
+        this.languaje = languaje;
 
         Console.WriteLine("Credits Screen Created");
         exit = false;
@@ -20,7 +25,12 @@ class CreditsScreen : Screen
         while (exit != true)
         {
             hardware.ClearScreen();
-            hardware.DrawImage(imageW);
+
+            if(languaje == 0)
+                hardware.DrawImage(imageW);
+            if(languaje == 1)
+                hardware.DrawImage(imageW_es);
+
             hardware.UpdateScreen();
             Thread.Sleep(50);
 
