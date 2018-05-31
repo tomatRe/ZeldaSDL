@@ -88,9 +88,9 @@ class StatsScreen : Screen
     {
         Sdl.SDL_Color red = new Sdl.SDL_Color(0, 255, 0);
 
-        score = SdlTtf.TTF_RenderText_Solid
-            (font.GetFontType(), dataArray[0].ToString(), red);
         time = SdlTtf.TTF_RenderText_Solid
+            (font.GetFontType(), dataArray[0].ToString(), red);
+        score = SdlTtf.TTF_RenderText_Solid
             (font.GetFontType(), dataArray[1].ToString(), red);
         levelReached = SdlTtf.TTF_RenderText_Solid
             (font.GetFontType(), dataArray[2].ToString(), red);

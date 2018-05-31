@@ -82,7 +82,7 @@ class GameOverScreen : Screen
             try
             {
                 StreamWriter data = File.AppendText("StatsFile.st");
-                string line = score + "-" + time + "-" + levelReached;
+                string line =  time + "-"+ score + "-" + levelReached;
                 data.WriteLine(line);
                 data.Close();
             }
