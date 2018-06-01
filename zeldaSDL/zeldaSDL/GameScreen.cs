@@ -4,6 +4,11 @@ using Tao.Sdl;
 
 class GameScreen : Screen
 {
+    short oldX;
+    short oldY;
+    short oldXMap;
+    short oldYMap;
+
     int numLevel = 1;
     bool exit = false;
     Level level;
@@ -38,6 +43,10 @@ class GameScreen : Screen
             // 2. Move character from keyboard input
 
             keyPressed = hardware.KeyPressed();
+            oldX = character.X;
+            oldY = character.Y;
+            oldXMap = level.XMap;
+            oldYMap = level.YMap;
             CheckInput();
 
             // 3. Move enemies and objects
@@ -65,38 +74,68 @@ class GameScreen : Screen
     {
         if (hardware.IsKeyPressed(Hardware.KEY_LEFT))
         {
-            character.MoveLeft();
+            if (character.X == 1024 / 2 && level.XMap > 0)
+                level.XMap--;
+            else if (character.X > 0)
+                character.MoveLeft();
 
             if (hardware.IsKeyPressed(Hardware.KEY_UP))
             {
                 character.MoveUp();
+                if (character.Y == 720 / 2 && level.YMap > 0)
+                    level.YMap--;
+                /*else if (character.Y > 0)
+                    character.MoveUp();*/
             }
             else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
             {
+                if (character.Y == 720 / 2 &&
+                    level.YMap < level.Height - 720)
+                    level.YMap++;
+                //else if (character.Y < 720 - Sprite.SPRITE_HEIGHT)
                 character.Movedown();
             }
 
         }
         else if (hardware.IsKeyPressed(Hardware.KEY_RIGHT))
         {
-            character.MoveRight();
+            if (character.X == 1024 / 2 &&
+                    level.XMap < level.Width - 1024)
+                level.XMap++;
+            else if (character.X < 1024 - Sprite.SPRITE_WIDTH)
+                character.MoveRight();
 
             if (hardware.IsKeyPressed(Hardware.KEY_UP))
             {
-                character.MoveUp();
+                if (character.Y == 720 / 2 && level.YMap > 0)
+                    level.YMap--;
+                else if (character.Y > 0)
+                    character.MoveUp();
             }
             else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
             {
-                character.Movedown();
+                if (character.Y == 720 / 2 &&
+                    level.YMap < level.Height - 720)
+                    level.YMap++;
+                else if (character.Y < 720 - Sprite.SPRITE_HEIGHT)
+                    character.Movedown();
             }
         }
         else if (hardware.IsKeyPressed(Hardware.KEY_UP))
         {
-            character.MoveUp();
+            
+            if (character.Y == 720 / 2 && level.YMap > 0)
+                level.YMap--;
+            else if (character.Y > 0)
+                character.MoveUp();
         }
         else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
         {
-            character.Movedown();
+            if (character.Y == 720 / 2 &&
+                    level.YMap < level.Height - 720)
+                level.YMap++;
+            else if (character.Y < 720 - Sprite.SPRITE_HEIGHT)
+                character.Movedown();
         }
         else if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
         {
@@ -112,6 +151,8 @@ class GameScreen : Screen
         }
         else if (hardware.IsKeyPressed(Hardware.KEY_ESC))
             exit = true;
+
+
         
     }
 
@@ -124,6 +165,29 @@ class GameScreen : Screen
     {
         //To Do enviromental collisions
 
+        if (character.CollidesWith(level.Walls))
+        {
+            character.X = oldX;
+            character.Y = oldY;
+            level.XMap = oldXMap;
+            level.YMap = oldYMap;
+        }
+
+        if (character.CollidesWith(level.SideWall))
+        {
+            character.X = oldX;
+            character.Y = oldY;
+            level.XMap = oldXMap;
+            level.YMap = oldYMap;
+        }
+
+        /*if (character.CollidesWith(level.floorTiles))
+        {
+            character.X = oldX;
+            character.Y = oldY;
+            level.XMap = oldXMap;
+            level.YMap = oldYMap;
+        }*/
 
         //Heart pickup
 
@@ -218,19 +282,26 @@ class GameScreen : Screen
 
     public void DrawLevel()
     {
-        foreach (Floor floor in level.floorTiles)
-            hardware.DrawSprite(Sprite.objects,
-            (short)(floor.X - level.XMap),
-            (short)(floor.Y - level.YMap),
-            223, 463,
-            48, 46);
+        hardware.DrawSprite(Sprite.grass,
+        level.XMap, level.YMap,
+        0, 0, 1024, 720);
+
+        if (!character.hasKey)
+            hardware.DrawSprite(Sprite.key,
+                (short)(k.X - level.XMap),
+                (short)(k.Y - level.YMap),
+                0, 0, 25, 25);
 
         foreach (Wall wall in level.Walls)
-            hardware.DrawSprite(Sprite.objects,
+            hardware.DrawSprite(Sprite.wall,
             (short)(wall.X - level.XMap),
             (short)(wall.Y - level.YMap),
-            351, 50,
-            48,46);
+            0, 0, 46, 43);
+
+        hardware.DrawSprite(Sprite.link,
+            (short)(character.X - level.XMap),
+            (short)(character.Y - level.YMap),
+            character.SpriteX, character.SpriteY, 55, 60);
 
         foreach (Door d in level.Doors)
             hardware.DrawSprite(Sprite.objects,
@@ -239,22 +310,23 @@ class GameScreen : Screen
             d.SpriteX, d.SpriteY,
             Sprite.SPRITE_WIDTH, Sprite.SPRITE_HEIGHT);
 
+        foreach (Floor roof in level.Roof)
+            hardware.DrawSprite(Sprite.floor,
+            (short)(roof.X - level.XMap),
+            (short)(roof.Y - level.YMap),
+            0, 0, 42, 43);
+
+        foreach (SideWall wall in level.SideWall)
+            hardware.DrawSprite(Sprite.sideWall,
+            (short)(wall.X - level.XMap),
+            (short)(wall.Y - level.YMap),
+            0, 0, 46, 43);
+
         if (enemy.hearts > 0)
             hardware.DrawSprite(Sprite.ockorok,
             (short)(enemy.X - level.XMap),
             (short)(enemy.Y - level.YMap),
             enemy.SpriteX, enemy.SpriteY, 68, 63);
-
-        if (!character.hasKey)
-            hardware.DrawSprite(Sprite.key,
-                (short)(k.X - level.XMap),
-                (short)(k.Y - level.YMap),
-                0, 0, 25, 25);
-
-        hardware.DrawSprite(Sprite.link,
-            (short)(character.X - level.XMap),
-            (short)(character.Y - level.YMap),
-            character.SpriteX, character.SpriteY, 55, 60);
     }
 
     public static void PauseTillNextFrame(int sleeptime)

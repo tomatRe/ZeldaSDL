@@ -74,3 +74,7 @@ C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\LanguajeS
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\statsScreen_es.png
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\SelectArrow_W.png
 C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\MenuScreen_es.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\wall.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\grass.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\floor.png
+C:\Users\toni\source\repos\proyect\zeldaSDL\zeldaSDL\bin\Debug\sprites\sideWall.png

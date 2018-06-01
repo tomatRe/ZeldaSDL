@@ -8,6 +8,8 @@ class Level : Map
     public Level(string levelName)
     {
         Walls = new List<Wall>();
+        SideWall = new List<SideWall>();
+        Roof = new List<Floor>();
         Doors = new List<Door>();
         Keys = new List<Key>();
         EnemySpawns = new List<EnemySpawn>();
@@ -83,6 +85,22 @@ class Level : Map
                                         (numLines * Sprite.SPRITE_HEIGHT)));
                                     break;
 
+                                case 't'://Add roof tiles
+                                    AddRoof(new Floor(
+                                        (short)
+                                        (i * Sprite.SPRITE_WIDTH),
+                                        (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT)));
+                                    break;
+
+                                case 's'://Add tilted wall tiles
+                                    AddSideWall(new SideWall(
+                                        (short)
+                                        (i * Sprite.SPRITE_WIDTH),
+                                        (short)
+                                        (numLines * Sprite.SPRITE_HEIGHT)));
+                                    break;
+
                                 case 'k'://Add key
                                     AddKey(new Key(
                                         (short)
@@ -135,9 +153,19 @@ class Level : Map
         Walls.Add(w);
     }
 
+    private void AddSideWall(SideWall s)
+    {
+        SideWall.Add(s);
+    }
+
     private void AddDoor(Door d)
     {
         Doors.Add(d);
+    }
+
+    private void AddRoof(Floor t)
+    {
+        Roof.Add(t);
     }
 
     private void AddKey(Key k)

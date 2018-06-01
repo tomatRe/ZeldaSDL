@@ -73,6 +73,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="PlayerSpawn.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="SideWall.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="StatsScreen.cs" />
     <Compile Include="Wall.cs" />
@@ -117,6 +118,9 @@
     <Content Include="sprites\creditsScreen_es.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="sprites\floor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sprites\fullSpriteSheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -124,6 +128,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="sprites\gameOverScreen_es.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sprites\grass.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="sprites\heart.png">
@@ -162,10 +169,16 @@
     <Content Include="sprites\SelectArrow_W.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="sprites\sideWall.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sprites\statsScreen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="sprites\statsScreen_es.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sprites\wall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="sprites\welcomeScreen.png">

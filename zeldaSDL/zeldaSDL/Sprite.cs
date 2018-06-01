@@ -41,11 +41,19 @@ class Sprite
         ("sprites/Overworld.png", 640,576);
     public static Image key = new Image
         ("sprites/key.png", 25,25);
+    public static Image wall = new Image
+        ("sprites/wall.png", 46, 43);
+    public static Image sideWall = new Image
+        ("sprites/sideWall.png", 46, 43);
+    public static Image grass = new Image
+        ("sprites/grass.png", 3073, 2160);
+    public static Image floor = new Image
+        ("sprites/floor.png", 42, 43);
 
     private int currentFrameTick;
     private int updatesPerFrame;
-    public const short SPRITE_WIDTH = 45;
-    public const short SPRITE_HEIGHT = 60;
+    public const short SPRITE_WIDTH = 42;
+    public const short SPRITE_HEIGHT = 43;
 
     public short X { get; set; }
     public short Y { get; set; }
@@ -82,6 +90,48 @@ class Sprite
             sequence[direction][i] = new Image(names[i]);
         containsSequence = true;
         currentFrame = 0;
+    }
+
+    public bool CollidesWith(Wall sp)
+    {
+        return (X + Sprite.SPRITE_WIDTH > sp.X && X < sp.X + Sprite.SPRITE_WIDTH &&
+                Y + Sprite.SPRITE_HEIGHT > sp.Y-15 && Y < sp.Y + Sprite.SPRITE_HEIGHT/2);
+    }
+
+    public bool CollidesWith(List<Wall> sprites)
+    {
+        foreach (Wall sp in sprites)
+            if (this.CollidesWith(sp))
+                return true;
+        return false;
+    }
+
+    public bool CollidesWith(SideWall sp)
+    {
+        return (X + Sprite.SPRITE_WIDTH > sp.X && X < sp.X + Sprite.SPRITE_WIDTH &&
+                Y + Sprite.SPRITE_HEIGHT > sp.Y && Y < sp.Y + Sprite.SPRITE_HEIGHT);
+    }
+
+    public bool CollidesWith(List<SideWall> sprites)
+    {
+        foreach (SideWall sp in sprites)
+            if (this.CollidesWith(sp))
+                return true;
+        return false;
+    }
+
+    public bool CollidesWith(Floor sp)
+    {
+        return (X + Sprite.SPRITE_WIDTH > sp.X && X < sp.X + Sprite.SPRITE_WIDTH &&
+                Y + Sprite.SPRITE_HEIGHT > sp.Y && Y < sp.Y + Sprite.SPRITE_HEIGHT);
+    }
+
+    public bool CollidesWith(List<Floor> sprites)
+    {
+        foreach (Floor sp in sprites)
+            if (this.CollidesWith(sp))
+                return true;
+        return false;
     }
 
     public void LoadSequence(string[] names)

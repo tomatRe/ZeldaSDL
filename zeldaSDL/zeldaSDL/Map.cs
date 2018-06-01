@@ -17,10 +17,12 @@ class Map
     public short YMap { get; set; }
 
     public List<Wall> Walls { get; set; }
+    public List<SideWall> SideWall { get; set; }
     public List<Door> Doors { get; set; }
     public List<Key> Keys { get; set; }
     public List<EnemySpawn> EnemySpawns { get; set; }
     public List<PlayerSpawn> playerSpawns { get; set; }
+    public List<Floor> Roof { get;set; }
     public List<Floor> floorTiles { get; set; }
     //------------------------
 
