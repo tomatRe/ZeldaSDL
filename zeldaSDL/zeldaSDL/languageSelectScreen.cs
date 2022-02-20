@@ -25,13 +25,13 @@ class LanguageSelectScreen : Screen
     public void Run()
     {
 
-        WaitForNextFrame(25);
+        WaitForNextFrame(60);
 
         //main loop
         while (!exit)
         {
             hardware.ClearScreen();
-            WaitForNextFrame(40);
+            WaitForNextFrame(60);
             hardware.DrawImage(imageW);
             hardware.DrawImage(cursor);
             hardware.UpdateScreen();

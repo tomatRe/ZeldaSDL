@@ -283,7 +283,7 @@ class GameScreen : Screen
     public void DrawLevel()
     {
         hardware.DrawSprite(Sprite.grass,
-        level.XMap, level.YMap,
+        (short)(level.XMap * -1), (short)(level.YMap * -1),
         0, 0, 1024, 720);
 
         if (!character.hasKey)

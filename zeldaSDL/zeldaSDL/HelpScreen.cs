@@ -33,7 +33,7 @@ class HelpScreen : Screen
 
             hardware.UpdateScreen();
 
-            Thread.Sleep(25);
+            Thread.Sleep(100);
             if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
                 exit = true;
         }

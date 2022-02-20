@@ -31,13 +31,13 @@ class MenuScreen : Screen
     public void Run()
     {
 
-        WaitForNextFrame(25);
+        WaitForNextFrame(100);
 
         //main loop
         while (!exit)
         {
             hardware.ClearScreen();
-            WaitForNextFrame(40);
+            WaitForNextFrame(60);
 
             if(languaje == 0)
                 hardware.DrawImage(imagen);
