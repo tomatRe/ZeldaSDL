@@ -3,13 +3,16 @@ class Player : Sprite
 {
     private const int x_offset = 55;
     private const int sprite_height = 60;
-    private const int frameSpeed = 3;
+    private const int frameSpeed = 1;
     private int frames = 0;
 
     public int hearts = 3;
     public bool isAttacking;
     public int cooldown = 20;
     public int bombCooldown = 400;
+
+    public int mapX = 0;
+    public int mapY = 0;
 
     public bool hasKey = false;
 
@@ -205,5 +208,25 @@ class Player : Sprite
 
     private void ChangeSprite()
     {
+    }
+
+    public int GetMapX()
+    {
+        return mapX;
+    }
+
+    public int GetMapY()
+    {
+        return mapY;
+    }
+
+    public void SetMapX(int mapX)
+    {
+        this.mapX = mapX;
+    }
+
+    public void SetMapY(int mapY)
+    {
+        this.mapY = mapY;
     }
 }

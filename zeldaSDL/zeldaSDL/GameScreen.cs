@@ -47,6 +47,8 @@ class GameScreen : Screen
             oldY = character.Y;
             oldXMap = level.XMap;
             oldYMap = level.YMap;
+            character.SetMapX(level.XMap);
+            character.SetMapY(level.YMap);
             CheckInput();
 
             // 3. Move enemies and objects
@@ -158,7 +160,9 @@ class GameScreen : Screen
 
     public void MoveElements()
     {
-        //To Do
+        //Move player with level
+
+        //character.MoveTo((short)character.mapX, (short)character.mapY);
     }
 
     public void CheckCollisions()
@@ -285,6 +289,18 @@ class GameScreen : Screen
         hardware.DrawSprite(Sprite.grass,
         (short)(level.XMap * -1), (short)(level.YMap * -1),
         0, 0, 1024, 720);
+
+        hardware.DrawSprite(Sprite.grass,
+        (short)(level.XMap * -1), (short)(level.YMap * -1),
+        -1024, 0, 1024*2, 720);
+
+        hardware.DrawSprite(Sprite.grass,
+        (short)(level.XMap * -1), (short)(level.YMap * -1),
+        0, -720, 1024, 720*2);
+
+        hardware.DrawSprite(Sprite.grass,
+        (short)(level.XMap * -1), (short)(level.YMap * -1),
+        -1024, -720, 2048, 720*2);
 
         if (!character.hasKey)
             hardware.DrawSprite(Sprite.key,
