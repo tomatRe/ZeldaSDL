@@ -78,7 +78,7 @@ class GameScreen : Screen
     {
         if (hardware.IsKeyPressed(Hardware.KEY_LEFT))
         {
-            level.XMap--;
+            level.XMap -= character.GetXspeed();
             character.MoveLeft();
 
             if (hardware.IsKeyPressed(Hardware.KEY_UP))
@@ -96,7 +96,7 @@ class GameScreen : Screen
         else if (hardware.IsKeyPressed(Hardware.KEY_RIGHT))
         {
             character.MoveRight();
-            level.XMap++;
+            level.XMap += character.GetXspeed();
 
             if (hardware.IsKeyPressed(Hardware.KEY_UP))
             {

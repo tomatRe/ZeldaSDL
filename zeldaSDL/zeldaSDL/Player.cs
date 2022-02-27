@@ -37,8 +37,8 @@ class Player : Sprite
 
         X = 512;
         Y = 360;
-        xSpeed = 2;
-        ySpeed = 2;
+        xSpeed = 4;
+        ySpeed = 4;
         direction = UP;
 
         SpriteX = 0;
@@ -228,5 +228,25 @@ class Player : Sprite
     public void SetMapY(int mapY)
     {
         this.mapY = mapY;
+    }
+
+    public short GetXspeed()
+    {
+        return xSpeed;
+    }
+
+    public void SetXspeed(short xSpeed)
+    {
+        this.xSpeed = xSpeed;
+    }
+
+    public short GetYspeed()
+    {
+        return xSpeed;
+    }
+
+    public void SetYspeed(short xSpeed)
+    {
+        this.xSpeed = xSpeed;
     }
 }
