@@ -33,6 +33,8 @@ class GameScreen : Screen
 
         do
         {
+
+            Console.WriteLine(character.X);
             // 1. Draw everything
 
             hardware.ClearScreen();
@@ -76,86 +78,64 @@ class GameScreen : Screen
     {
         if (hardware.IsKeyPressed(Hardware.KEY_LEFT))
         {
-            if (character.X == 1024 / 2 && level.XMap > 0)
-                level.XMap--;
-            else if (character.X > 0)
-                character.MoveLeft();
+            level.XMap--;
+            character.MoveLeft();
 
             if (hardware.IsKeyPressed(Hardware.KEY_UP))
             {
+                level.YMap--;
                 character.MoveUp();
-                if (character.Y == 720 / 2 && level.YMap > 0)
-                    level.YMap--;
-                /*else if (character.Y > 0)
-                    character.MoveUp();*/
             }
             else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
             {
-                if (character.Y == 720 / 2 &&
-                    level.YMap < level.Height - 720)
-                    level.YMap++;
-                //else if (character.Y < 720 - Sprite.SPRITE_HEIGHT)
+                level.YMap++;
                 character.Movedown();
             }
 
         }
         else if (hardware.IsKeyPressed(Hardware.KEY_RIGHT))
         {
-            if (character.X == 1024 / 2 &&
-                    level.XMap < level.Width - 1024)
-                level.XMap++;
-            else if (character.X < 1024 - Sprite.SPRITE_WIDTH)
-                character.MoveRight();
+            character.MoveRight();
+            level.XMap++;
 
             if (hardware.IsKeyPressed(Hardware.KEY_UP))
             {
-                if (character.Y == 720 / 2 && level.YMap > 0)
-                    level.YMap--;
-                else if (character.Y > 0)
-                    character.MoveUp();
+                level.YMap--;
+                character.MoveUp();
             }
             else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
             {
-                if (character.Y == 720 / 2 &&
-                    level.YMap < level.Height - 720)
-                    level.YMap++;
-                else if (character.Y < 720 - Sprite.SPRITE_HEIGHT)
-                    character.Movedown();
+                level.YMap++;
+                character.Movedown();
             }
         }
         else if (hardware.IsKeyPressed(Hardware.KEY_UP))
         {
-            
-            if (character.Y == 720 / 2 && level.YMap > 0)
-                level.YMap--;
-            else if (character.Y > 0)
-                character.MoveUp();
+            level.YMap--;
+            character.MoveUp();
         }
         else if (hardware.IsKeyPressed(Hardware.KEY_DOWN))
         {
-            if (character.Y == 720 / 2 &&
-                    level.YMap < level.Height - 720)
-                level.YMap++;
-            else if (character.Y < 720 - Sprite.SPRITE_HEIGHT)
-                character.Movedown();
+            level.YMap++;
+            character.Movedown();
         }
-        else if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
+
+
+        if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
         {
             character.FireMain();
         }
-        else if (hardware.IsKeyPressed(Hardware.KEY_CTRL))
+
+        if (hardware.IsKeyPressed(Hardware.KEY_CTRL))
         {
             if (character.CanFireSpecial())
             {
                 b = new Bomb(character.X, character.Y);
             }
-
         }
-        else if (hardware.IsKeyPressed(Hardware.KEY_ESC))
-            exit = true;
 
-
-        
+        if (hardware.IsKeyPressed(Hardware.KEY_ESC))
+            exit = true;        
     }
 
     public void MoveElements()
