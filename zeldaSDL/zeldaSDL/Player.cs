@@ -35,8 +35,8 @@ class Player : Sprite
     public Player()
     {
 
-        X = 300;
-        Y = 100;
+        X = 512;
+        Y = 360;
         xSpeed = 2;
         ySpeed = 2;
         direction = UP;
